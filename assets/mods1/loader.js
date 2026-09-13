@@ -69,9 +69,9 @@ console.log("[LOADER] 小工具載入器啟動");
         { id: "uw_hook",                src: "./uw_hook.js",                css: null,                           enabled: false },
         { id: "show_level_cap",         src: "./show_level_cap.js",         css: null,                           enabled: true  },
         { id: "restore_power_display",  src: "./restore_power_display.js",  css: null,                           enabled: true  },
-        { id: "pvp_opponent_persist",   src: "./pvp_opponent_persist.js",   css: null,                           enabled: false  },
+        { id: "pvp_opponent_persist",   src: "./pvp_opponent_persist.js",   css: null,                           enabled: true  },
         { id: "city_reward_tracker",    src: "./city_reward_tracker.js",    css: "./city_reward_tracker.css",    enabled: false  },
-        { id: "rf_audio_panel",         src: "./rf_audio_panel.js",         css: null,                           enabled: false  },
+        { id: "rf_audio_panel",         src: "./rf_audio_panel.js",         css: null,                           enabled: true  },
         // rf_mod 提供 reduceMotion（首頁齒輪停轉等）；它一旦關閉，rf_mod.js 不會執行、
         // html.rf-reduce-motion 不會被加上，rf_mod.css 也不會注入，齒輪停轉就完全沒有效果。
         // 2026-09-05：改為預設開啟，修正「齒輪轉動停止沒有生效」。

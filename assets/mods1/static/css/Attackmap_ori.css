@@ -1,0 +1,403 @@
+.Attackmap_rootContainer__pYmZT {
+    background-position: 50%;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 100%
+}
+
+.Attackmap_mainBox__HZsIb {
+    color: #fff;
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    width: 100%
+}
+
+.Attackmap_leftBox__pqJav {
+    left: 0;
+    width: 49%
+}
+
+.Attackmap_leftBox__pqJav,.Attackmap_rightBox__XmM0N {
+    background-color: #000;
+    display: inline-block;
+    height: 100%;
+    position: absolute;
+    top: 0
+}
+
+.Attackmap_rightBox__XmM0N {
+    background-position: 50%;
+    background-size: cover;
+    color: #fff;
+    padding: 1%;
+    right: 0;
+    width: 50%
+}
+
+.Attackmap_cityTitle__b8TqK {
+    height: calc(min(57vw,100vh)*.07);
+    margin-top: 2%;
+    position: relative
+}
+
+.Attackmap_cityName__x2MTP {
+    display: inline-block;
+    font-family: "Noto Serif TC";
+    font-family: var(--font_noto_serif);
+    font-size: calc(min(57vw,100vh)*.0625);
+    font-weight: 900;
+    left: 50%;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.Attackmap_city_point_description__UVFXu {
+    font-size: calc(min(57vw,100vh)*.03125);
+    font-weight: 700;
+    height: calc(min(57vw,100vh)*.03125);
+    line-height: 1;
+    margin-bottom: calc(min(57vw,100vh)*.0125);
+    margin-top: calc(min(57vw,100vh)*.00625)
+}
+
+.Attackmap_nameArrowL__WnUIC {
+    left: 15%
+}
+
+.Attackmap_nameArrowL__WnUIC,.Attackmap_nameArrowR__vCBXQ {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.Attackmap_nameArrowR__vCBXQ {
+    right: 15%
+}
+
+.Attackmap_arrowImg__4zVUX {
+    height: calc(min(57vw,100vh)*86/1600)
+}
+
+.Attackmap_cityImg__KxrKW {
+    height: calc(min(57vw,100vh)*.24063)
+}
+
+.Attackmap_cityDataBox__\+xlJD {
+    height: calc(min(57vw,100vh)*.38188);
+    position: relative
+}
+
+.Attackmap_dataRowHead__mqhnU {
+    font-family: "Noto Serif TC";
+    font-family: var(--font_noto_serif);
+    font-size: calc(min(57vw,100vh)*.03375);
+    font-weight: 700;
+    height: calc(min(57vw,100vh)*.07062)
+}
+
+.Attackmap_dataRowHead__mqhnU:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+    width: 0
+}
+
+.Attackmap_dataRow__Vuoxf {
+    font-family: Noto Sans TC;
+    font-family: var(--font_noto_sans);
+    font-size: calc(min(57vw,100vh)*.03375);
+    font-weight: 700;
+    height: calc(min(57vw,100vh)*.05375);
+    margin: 1.5% 0 0
+}
+
+.Attackmap_dataRow__Vuoxf:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0
+}
+
+.Attackmap_dataRowBg__KsVYZ {
+    background-size: 100% 100%
+}
+
+.Attackmap_flag__91wA5 {
+    height: calc(min(57vw,100vh)*.40063);
+}
+
+.Attackmap_flagLeft__P-F-D {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.Attackmap_flagRight__oID2U {
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.Attackmap_nation_battle_nation_icon__CDZPd {
+    -webkit-filter: drop-shadow(0 0 .5rem rgba(0,0,0,.7));
+    filter: drop-shadow(0 0 .5rem rgba(0,0,0,.7));
+    top: 45%;
+    width: calc(min(57vw, 100vh)*.04375)
+}
+
+.Attackmap_nation_battle_close_roll_call_at__EmSiH,
+.Attackmap_nation_battle_nation_icon__CDZPd {
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.Attackmap_nation_battle_close_roll_call_at__EmSiH {
+    font-family: Gelasio;
+    font-family: var(--font_text_figures);
+    font-size: calc(min(57vw, 100vh)*.02375);
+    font-weight: 700;
+    top: 70%
+}
+
+.Attackmap_icon_2knifes__VcIwg {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: calc(min(57vw,100vh)*.19688)
+}
+
+.Attackmap_missionNameBox__gPC7n {
+    display: inline-block;
+    font-size: calc(min(57vw,100vh)*.03375);
+    height: calc(min(57vw,100vh)*.07563);
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: calc(min(57vw,100vh)*.80188);
+    width: calc(min(57vw,100vh)*.5125)
+}
+
+.Attackmap_missionNameBox__gPC7n img {
+    height: 100%;
+    width: 100%
+}
+
+.Attackmap_missionName__6cpPS {
+    font-family: "Noto Serif TC";
+    font-family: var(--font_noto_serif);
+    font-weight: 900;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.Attackmap_missionNoL__9\+LpH {
+    font-size: calc(min(57vw,100vh)*.02875);
+    left: 0;
+    top: 0
+}
+
+.Attackmap_missionNoL__9\+LpH,.Attackmap_missionNoR__yiBop {
+    color: #000;
+    font-family: Gelasio;
+    font-family: var(--font_text_figures);
+    font-weight: 700;
+    position: absolute
+}
+
+.Attackmap_missionNoR__yiBop {
+    bottom: 0;
+    font-size: calc(min(57vw,100vh)*.0375);
+    right: 0
+}
+
+.Attackmap_chapterNameBox__\+BAvw {
+    display: inline-block;
+    font-size: calc(min(57vw,100vh)*.03375);
+    height: calc(min(57vw,100vh)*.0575);
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: calc(min(57vw,100vh)*.90063);
+    width: calc(min(57vw,100vh)*.5125)
+}
+
+.Attackmap_chapterNameBox__\+BAvw img {
+    height: 100%;
+    width: 100%
+}
+
+.Attackmap_chapterName__W4CY1 {
+    font-family: Noto Sans TC;
+    font-family: var(--font_noto_sans);
+    font-weight: 700;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 100%
+}
+
+.Attackmap_btnCircleBox__ABfT0 {
+    overflow: hidden;
+    right: 0
+}
+
+.Attackmap_btnCircleBox2__8cp5A,.Attackmap_btnCircleBox__ABfT0 {
+    bottom: 0;
+    height: calc(min(57vw,100vh)*.2625);
+    position: absolute;
+    width: calc(min(57vw,100vh)*.3625)
+}
+
+.Attackmap_btnCircleBox2__8cp5A {
+    overflow: visible;
+    right: calc(min(57vw,100vh)*.37813)
+}
+
+.Attackmap_btnCircleWrap__eGwlI {
+    display: inline-block;
+    height: calc(min(57vw,100vh)*.425);
+    position: relative;
+    width: calc(min(57vw,100vh)*.425)
+}
+
+.Attackmap_btnCircleGold__Va4-X {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+.Attackmap_btnCircleText__kcO\+z {
+    font-size: calc(min(57vw,100vh)*.05375);
+    left: 50%;
+    position: absolute;
+    top: 40%
+}
+
+.Attackmap_btnCircleText__kcO\+z,.Attackmap_markerCityBox__9SxDr {
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.Attackmap_markerCityBox__9SxDr {
+    height: calc(min(57vw, 100vh)*.125);
+    position: relative;
+    width: calc(min(57vw, 100vh)*.125)
+}
+
+.Attackmap_markerCityBox_inline__UR8KZ {
+    height: calc(min(57vw,100vh)*.125*2);
+    width: calc(min(57vw,100vh)*.125*2)
+}
+
+.Attackmap_animatedRing__TViqr,.Attackmap_markerCityBox_inline__UR8KZ {
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.Attackmap_animatedRing__TViqr {
+    height: calc(min(57vw,100vh)*.34375)
+}
+
+.Attackmap_animatedRing__TViqr img {
+    height: 100%
+}
+
+.Attackmap_markerCityIcon__\+JFz0 {
+    height: 100%;
+    width: 100%
+}
+
+.Attackmap_markerClickSensor__VAWI1 {
+    width: 100%
+}
+
+.Attackmap_markerBuildingIcon__-3Jxc,
+.Attackmap_markerClickSensor__VAWI1 {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0
+}
+
+.Attackmap_markerCityName__8GqTG {
+    bottom: 0;
+    font-size: calc(min(57vw,100vh)*.04375);
+    font-weight: 700;
+    left: 50%;
+    position: absolute;
+    text-shadow: #000000 .1em .1em .2em;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    white-space: nowrap
+}
+
+.Attackmap_marker2swords__g3aDl {
+    height: calc(min(57vw,100vh)*.0625);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.Attackmap_mapPanelLB__e7iSA {
+    bottom: calc(min(57vw,100vh)*.01375);
+    display: flex;
+    left: calc(min(57vw,100vh)*.01375);
+    position: absolute;
+    z-index: 500
+}
+
+.Attackmap_icon_unionFlag__VeoXf {
+    width: calc(min(57vw,100vh)*.1)
+}
+
+.Attackmap_mapPanelLB_text__ScBgO {
+    align-items: end;
+    display: flex;
+    font-size: calc(min(57vw,100vh)*.02625);
+    font-weight: 700
+}
+
+.Attackmap_hqBox__2x27\+ {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)
+}
+
+.Attackmap_hqBox__2x27\+ img {
+    height: calc(min(57vw,100vh)*.08938)
+}
+
+.Attackmap_hqWord__z1qJC {
+    font-family: Noto Sans TC;
+    font-family: var(--font_noto_sans);
+    font-size: calc(min(57vw,100vh)*.02938);
+    font-weight: 700;
+    white-space: nowrap
+}
