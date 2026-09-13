@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<title>DCContext 監控網站</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+TC:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#12140f;
+    --panel:#1a1d15;
+    --panel-2:#1f2318;
+    --line:#333827;
+    --amber:#d9a441;
+    --amber-dim:#8a6a2e;
+    --teal:#4f7a6b;
+    --paper:#e8e4d5;
+    --muted:#8b9284;
+    --danger:#c9553d;
+    --ok:#6f9b5c;
+    --blue:#5a8fc9;
+    --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+    --sans:'IBM Plex Sans TC','IBM Plex Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--paper);font-family:var(--sans);}
+  body{min-height:100vh;}
+  .wrap{max-width:1300px;margin:0 auto;padding:24px 20px 60px;}
+
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px;flex-wrap:wrap;gap:10px;
+  }
+  h1{font-family:var(--mono);font-size:20px;margin:0;color:var(--paper);}
+  h1 span{color:var(--amber);}
+  .status{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);}
+  .dot.live{background:var(--ok);box-shadow:0 0 6px var(--ok);}
+
+  /* 分頁 */
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;flex-wrap:wrap;}
+  .tab-btn{
+    background:none;border:none;color:var(--muted);font-family:var(--mono);font-size:13px;
+    padding:9px 16px;cursor:pointer;border-bottom:2px solid transparent;
+  }
+  .tab-btn:hover{color:var(--paper);}
+  .tab-btn.active{color:var(--amber);border-bottom-color:var(--amber);}
+
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  /* 工具列 */
+  .db-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;}
+  .db-toolbar .count{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap;}
+
+  button{
+    font-family:var(--mono);font-size:12px;background:var(--panel-2);color:var(--paper);
+    border:1px solid var(--amber-dim);border-radius:2px;padding:7px 14px;cursor:pointer;
+  }
+  button:hover{background:var(--amber);color:#161810;border-color:var(--amber);}
+  button.secondary{border-color:var(--line);}
+  button.secondary:hover{background:var(--teal);color:#0e130f;border-color:var(--teal);}
+  input[type=text], select{
+    background:#0e0f0b;color:var(--paper);border:1px solid var(--line);border-radius:2px;
+    font-family:var(--mono);font-size:12px;padding:7px 10px;min-width:180px;
+  }
+
+  /* 資料表 */
+  .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:3px;max-height:560px;background:var(--panel);}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px;}
+  thead th{
+    position:sticky;top:0;background:var(--panel-2);color:var(--amber);text-align:left;
+    padding:8px 12px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none;
+  }
+  thead th:hover{color:var(--paper);}
+  tbody td{padding:6px 12px;border-bottom:1px solid #1b1e14;color:var(--paper);white-space:nowrap;}
+  tbody tr:hover{background:var(--panel-2);}
+  td.empty{text-align:center;color:var(--muted);padding:24px;}
+
+  /* 即時日誌 */
+  .log-list{max-height:600px;overflow:auto;border:1px solid var(--line);border-radius:3px;background:var(--panel);}
+  .entry{
+    font-family:var(--mono);font-size:11.5px;padding:6px 12px;border-bottom:1px solid #1b1e14;line-height:1.5;
+  }
+  .entry .time{color:var(--muted);margin-right:8px;}
+  .entry .tag{color:var(--amber-dim);margin-right:8px;}
+  .entry .detail{color:var(--paper);word-break:break-all;}
+  .entry .payload{
+    margin-top:4px;color:var(--teal);white-space:pre-wrap;word-break:break-all;
+    max-height:120px;overflow:auto;background:#0e0f0b;padding:4px 6px;border-radius:2px;
+  }
+  .empty{padding:20px;text-align:center;color:var(--muted);font-family:var(--mono);font-size:12px;}
+
+  .toolbar-global{display:flex;gap:8px;align-items:center;margin-top:20px;flex-wrap:wrap;}
+  .toolbar-global .hint{font-family:var(--mono);font-size:11px;color:var(--muted);}
+
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-track{background:#0e0f0b;}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>DCContext <span>監控網站</span></h1>
+    </div>
+    <div class="status">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">等待訊號中…</span>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="cities">城鎮資料庫</button>
+    <button class="tab-btn" data-tab="unions">聯盟資料庫</button>
+    <button class="tab-btn" data-tab="nations">國家資料庫</button>
+    <button class="tab-btn" data-tab="log">即時日誌</button>
+  </nav>
+
+  <section class="tab-panel active" data-panel="cities">
+    <div class="db-toolbar">
+      <input type="text" class="search" data-cat="changed_cities" placeholder="搜尋城鎮資料…" />
+      <button data-action="export-json" data-cat="changed_cities">匯出 JSON</button>
+      <button data-action="export-csv" data-cat="changed_cities">匯出 CSV</button>
+      <button class="secondary" data-action="clear-cat" data-cat="changed_cities">清空此分類</button>
+      <span class="count" data-count="changed_cities">0 筆</span>
+    </div>
+    <div class="table-wrap"><table data-table="changed_cities"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="tab-panel" data-panel="unions">
+    <div class="db-toolbar">
+      <input type="text" class="search" data-cat="changed_unions" placeholder="搜尋聯盟資料…" />
+      <button data-action="export-json" data-cat="changed_unions">匯出 JSON</button>
+      <button data-action="export-csv" data-cat="changed_unions">匯出 CSV</button>
+      <button class="secondary" data-action="clear-cat" data-cat="changed_unions">清空此分類</button>
+      <span class="count" data-count="changed_unions">0 筆</span>
+    </div>
+    <div class="table-wrap"><table data-table="changed_unions"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="tab-panel" data-panel="nations">
+    <div class="db-toolbar">
+      <input type="text" class="search" data-cat="changed_nations" placeholder="搜尋國家資料…" />
+      <button data-action="export-json" data-cat="changed_nations">匯出 JSON</button>
+      <button data-action="export-csv" data-cat="changed_nations">匯出 CSV</button>
+      <button class="secondary" data-action="clear-cat" data-cat="changed_nations">清空此分類</button>
+      <span class="count" data-count="changed_nations">0 筆</span>
+    </div>
+    <div class="table-wrap"><table data-table="changed_nations"><thead></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="tab-panel" data-panel="log">
+    <div class="db-toolbar">
+      <input type="text" id="logSearch" placeholder="搜尋日誌內容…" />
+      <select id="logCategoryFilter"><option value="">全部分類</option></select>
+      <button class="secondary" id="logClear">清空日誌</button>
+    </div>
+    <div class="log-list" id="logList"></div>
+  </section>
+
+  <div class="toolbar-global">
+    <button id="pauseBtn" class="secondary">暫停</button>
+    <button id="clearAllBtn" class="secondary">清空全部資料</button>
+    <span class="hint">
+      需與遊戲頁面同來源（同網域/同 port）才收得到廣播 — 建議兩邊都用 http://localhost 開啟。
+      資料庫與日誌會保存在瀏覽器本機（localStorage），關閉分頁不會遺失，直到你按「清空」。
+    </span>
+  </div>
+</div>
+
+<script>
+(function(){
+  const CHANNEL_NAME = "rf_dc_monitor";
+  const STORAGE_KEY = "rf_dc_monitor_store_v1";
+  const MAX_LOG = 1000;
+
+  const DB_CATEGORIES = {
+    changed_cities:  { title: "城鎮資料庫" },
+    changed_unions:  { title: "聯盟資料庫" },
+    changed_nations: { title: "國家資料庫" }
+  };
+  const CATEGORY_LABELS = {
+    changed_cities:  "城市資料變動",
+    changed_unions:  "聯盟資料變動",
+    changed_nations: "國家資料變動",
+    changed_other:   "其他資料變動",
+    presence_socket: "連線狀態",
+    audio:           "音樂/音效",
+    locale:          "語系設定",
+    maintenance:     "維護/錯誤",
+    actor_actions:   "角色/隊伍動作",
+    other:           "未分類"
+  };
+  const COLUMN_PRIORITY = [
+    "id","city_id","union_id","nation_id","name","city_name","union_name","city",
+    "power","gold","medal","_updatedAt"
+  ];
+
+  let store = loadStore();
+  let paused = false;
+  const sortState = {};   // { [cat]: {col, dir} }
+  const searchState = {}; // { [cat]: text }
+
+  function loadStore(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        parsed.db = parsed.db || {};
+        Object.keys(DB_CATEGORIES).forEach(c => { if (!parsed.db[c]) parsed.db[c] = {}; });
+        parsed.log = parsed.log || [];
+        return parsed;
+      }
+    } catch(e){ console.warn("DC monitor: 讀取本機資料失敗", e); }
+    return {
+      db: { changed_cities: {}, changed_unions: {}, changed_nations: {} },
+      log: []
+    };
+  }
+
+  let saveScheduled = false;
+  function scheduleSave(){
+    if (saveScheduled) return;
+    saveScheduled = true;
+    setTimeout(() => {
+      saveScheduled = false;
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); }
+      catch(e){ console.warn("DC monitor: 儲存本機資料失敗（可能超過容量）", e); }
+    }, 800);
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ---------- 分頁切換 ----------
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector('.tab-panel[data-panel="'+btn.dataset.tab+'"]').classList.add('active');
+    });
+  });
+
+  // ---------- 資料表 ----------
+  function getColumns(cat){
+    const cols = new Set();
+    Object.values(store.db[cat]).forEach(rec => {
+      Object.keys(rec).forEach(k => { if (k !== '_key') cols.add(k); });
+    });
+    const arr = Array.from(cols);
+    arr.sort((a,b) => {
+      const pa = COLUMN_PRIORITY.indexOf(a), pb = COLUMN_PRIORITY.indexOf(b);
+      if (pa === -1 && pb === -1) return a.localeCompare(b);
+      if (pa === -1) return 1;
+      if (pb === -1) return -1;
+      return pa - pb;
+    });
+    return arr;
+  }
+
+  function renderTable(cat){
+    const table = document.querySelector('table[data-table="'+cat+'"]');
+    if (!table) return;
+    const cols = getColumns(cat);
+    const thead = table.querySelector('thead');
+    const tbody = table.querySelector('tbody');
+    const sort = sortState[cat] || {};
+
+    thead.innerHTML = '<tr>' + cols.map(c => {
+      const arrow = sort.col === c ? (sort.dir === 'asc' ? ' ▲' : ' ▼') : '';
+      const label = c === '_updatedAt' ? '更新時間' : c;
+      return '<th data-col="'+escapeHtml(c)+'">'+escapeHtml(label)+arrow+'</th>';
+    }).join('') + '</tr>';
+
+    let rows = Object.values(store.db[cat]);
+    const q = (searchState[cat] || '').toLowerCase();
+    if (q) rows = rows.filter(r => cols.some(c => String(r[c] ?? '').toLowerCase().includes(q)));
+
+    if (sort.col) {
+      rows = rows.slice().sort((a,b) => {
+        let av = a[sort.col], bv = b[sort.col];
+        if (!(typeof av === 'number' && typeof bv === 'number')) { av = String(av ?? ''); bv = String(bv ?? ''); }
+        const cmp = av > bv ? 1 : (av < bv ? -1 : 0);
+        return sort.dir === 'desc' ? -cmp : cmp;
+      });
+    }
+
+    if (rows.length === 0) {
+      tbody.innerHTML = '<tr><td class="empty" colspan="'+(cols.length || 1)+'">尚無資料</td></tr>';
+    } else {
+      tbody.innerHTML = rows.map(r => '<tr>' + cols.map(c => {
+        let v = r[c];
+        if (c === '_updatedAt' && v) v = new Date(v).toLocaleString();
+        return '<td>'+escapeHtml(v ?? '')+'</td>';
+      }).join('') + '</tr>').join('');
+    }
+
+    const countEl = document.querySelector('[data-count="'+cat+'"]');
+    if (countEl) countEl.textContent = Object.keys(store.db[cat]).length + ' 筆';
+  }
+
+  document.querySelectorAll('table[data-table]').forEach(table => {
+    table.addEventListener('click', ev => {
+      const th = ev.target.closest('th');
+      if (!th) return;
+      const cat = table.dataset.table;
+      const col = th.dataset.col;
+      const cur = sortState[cat] || {};
+      sortState[cat] = { col, dir: (cur.col === col && cur.dir === 'asc') ? 'desc' : 'asc' };
+      renderTable(cat);
+    });
+  });
+
+  document.querySelectorAll('input.search').forEach(inp => {
+    inp.addEventListener('input', () => {
+      searchState[inp.dataset.cat] = inp.value.trim();
+      renderTable(inp.dataset.cat);
+    });
+  });
+
+  document.querySelectorAll('button[data-action="clear-cat"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      if (!confirm('確定要清空「'+DB_CATEGORIES[cat].title+'」的所有資料嗎？')) return;
+      store.db[cat] = {};
+      scheduleSave();
+      renderTable(cat);
+    });
+  });
+
+  function toCSV(cat){
+    const cols = getColumns(cat);
+    const rows = Object.values(store.db[cat]);
+    const esc = v => '"' + String(v ?? '').replace(/"/g,'""') + '"';
+    const lines = [cols.map(esc).join(',')];
+    rows.forEach(r => lines.push(cols.map(c => esc(r[c])).join(',')));
+    return lines.join('\n');
+  }
+
+  function download(filename, content, mime){
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  document.querySelectorAll('button[data-action="export-json"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      download(cat + '_' + Date.now() + '.json', JSON.stringify(Object.values(store.db[cat]), null, 2), 'application/json');
+    });
+  });
+  document.querySelectorAll('button[data-action="export-csv"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      download(cat + '_' + Date.now() + '.csv', toCSV(cat), 'text/csv');
+    });
+  });
+
+  // ---------- 即時日誌 ----------
+  const logListEl = document.getElementById('logList');
+  const logSearchEl = document.getElementById('logSearch');
+  const logCatFilterEl = document.getElementById('logCategoryFilter');
+  Object.keys(CATEGORY_LABELS).forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat; opt.textContent = CATEGORY_LABELS[cat];
+    logCatFilterEl.appendChild(opt);
+  });
+
+  function renderLog(){
+    let entries = store.log;
+    const cat = logCatFilterEl.value;
+    const q = logSearchEl.value.trim().toLowerCase();
+    if (cat) entries = entries.filter(e => e.category === cat);
+    if (q) entries = entries.filter(e =>
+      (e.detail || '').toLowerCase().includes(q) || (e.summary || '').toLowerCase().includes(q));
+    const slice = entries.slice(-500).reverse();
+    if (slice.length === 0) { logListEl.innerHTML = '<div class="empty">尚無資料</div>'; return; }
+    logListEl.innerHTML = slice.map(e => {
+      const time = new Date(e.ts).toLocaleTimeString();
+      const label = CATEGORY_LABELS[e.category] || e.category;
+      const payload = e.summary ? '<div class="payload">'+escapeHtml(e.summary)+'</div>' : '';
+      return '<div class="entry"><span class="time">'+time+'</span><span class="tag">['+escapeHtml(label)+']</span>'+
+        '<span class="detail">'+escapeHtml(e.detail || '')+'</span>'+payload+'</div>';
+    }).join('');
+  }
+  logSearchEl.addEventListener('input', renderLog);
+  logCatFilterEl.addEventListener('change', renderLog);
+  document.getElementById('logClear').addEventListener('click', () => {
+    if (!confirm('確定要清空所有日誌嗎？')) return;
+    store.log = [];
+    scheduleSave();
+    renderLog();
+  });
+
+  // ---------- 全域按鈕 ----------
+  const statusDot = document.getElementById('statusDot');
+  const statusText = document.getElementById('statusText');
+
+  document.getElementById('pauseBtn').addEventListener('click', function(){
+    paused = !paused;
+    this.textContent = paused ? '繼續' : '暫停';
+    statusText.textContent = paused ? '已暫停接收' : '接收中…';
+  });
+
+  document.getElementById('clearAllBtn').addEventListener('click', () => {
+    if (!confirm('確定要清空全部資料庫與日誌嗎？此動作無法復原。')) return;
+    store = { db: { changed_cities: {}, changed_unions: {}, changed_nations: {} }, log: [] };
+    scheduleSave();
+    Object.keys(DB_CATEGORIES).forEach(renderTable);
+    renderLog();
+  });
+
+  // ---------- 接收廣播 ----------
+  function handleMessage(msg){
+    if (paused) return;
+
+    store.log.push({ ts: msg.ts, category: msg.category, detail: msg.detail, summary: msg.summary });
+    if (store.log.length > MAX_LOG) store.log = store.log.slice(-MAX_LOG);
+
+    if (DB_CATEGORIES[msg.category] && Array.isArray(msg.records)) {
+      msg.records.forEach((rec, idx) => {
+        const { __key, __sourceKey, ...fields } = rec;
+        const key = __key || ('tmp_' + msg.ts + '_' + idx);
+        store.db[msg.category][key] = Object.assign({}, fields, { _updatedAt: msg.ts, _key: key });
+      });
+      renderTable(msg.category);
+    }
+
+    renderLog();
+    scheduleSave();
+    statusDot.classList.add('live');
+    statusText.textContent = '接收中…（最後更新 ' + new Date().toLocaleTimeString() + '）';
+  }
+
+  let channel;
+  try {
+    channel = new BroadcastChannel(CHANNEL_NAME);
+    channel.onmessage = ev => handleMessage(ev.data);
+  } catch(e){
+    statusText.textContent = '這個瀏覽器不支援 BroadcastChannel，無法接收資料';
+  }
+
+  // 初始渲染（載入之前保存在 localStorage 的資料）
+  Object.keys(DB_CATEGORIES).forEach(renderTable);
+  renderLog();
+})();
+</script>
+</body>
+</html>

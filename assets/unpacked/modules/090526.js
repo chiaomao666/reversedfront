@@ -1,0 +1,5 @@
+
+      "use strict";
+
+      e.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABQCAMAAACTf/MwAAAANlBMVEVHcEz///////////////////////////////////////////////////////////////////+GUsxbAAAAEXRSTlMAAwwXKDpOZHOGnK25x9jl9jSec60AAAH1SURBVHja7dcJjqQwDAVQbGdfnftfdmgqmtBiUoK4pJFa/Q/w5HwgCdv/DwApAjmivRcrZFKJSqiQzcxZgwxxmVurBmRIqm1XPAoQtKnyrnAgAWLigTQW1EsmFG5HsgY50qoFKdKLkXTSk9QSYjsylrSElDPS2NMCEk7I4rOmjpyTnj5rNZYzUgw8RepARr0oQJbeGOjLuSpPilEu9UmWihlI+3eqww0A7izHxQnyd6uCW8W2N+Fo6Uaxo5MplN5DqFwcyNuJzBzRbj7JtWmaIXneyc2XELVPtT3L5SsH7TM/M67fORxb7Eqqw8FQqHzkucV+OKi0NtZ5H0KIuZS6p5t3nWtgV3czpHLMuOIMCxBJGedjngx294iAr8GIlNLGHZNNHXP/doYmlJmU8SbS39CJxP75iVV4ZZxrdObJOGKo0IqDrn5iHAAV+RtTCJYg9FVwjo6gHY7kTgrfnKy2HlHRxWzLTjgxdpkBXU4db+uO548wqgi6GcHYerIWMOBbT6RPMOxRwoRxA5MwqTOJJAzVsasLYnozASQKxN6M2iRRPPY+QfxLiSRSqI5/IlkzcmWzfFy2Saao0hpnCzKFYms1qE0WFZiLw+VeAV5KzQujwCkbAFm/NAngVwgRYQ8qvbqYlwIvBgSdAELvRrRFbb/5GfkDNlVU/wcSC78AAAAASUVORK5CYII=";
+    }

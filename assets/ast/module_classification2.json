@@ -1,0 +1,3022 @@
+{
+ "81506": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "34575": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "93913": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99842": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67154": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29754": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2205": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95318": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57067": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78585": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99489": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50008": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87757": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1264": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "64430": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "71512": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95808": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92457": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60291": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70355": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73449": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79754": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "30897": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "63282": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "13564": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23102": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15821": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "34501": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72644": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45340": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47255": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84786": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74569": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73381": {
+  "feature": "vendor",
+  "vendor": [
+   "content-type"
+  ]
+ },
+ "28036": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "9346": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6857": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35517": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23773": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37470": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81804": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "96467": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72733": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "76460": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "40777": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47297": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52693": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50221": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67600": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44049": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39774": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79549": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29301": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84044": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49580": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95411": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "64341": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "59145": {
+  "feature": "vendor",
+  "vendor": [
+   "content-type"
+  ]
+ },
+ "98089": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47835": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "33589": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99006": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84265": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "31208": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27828": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "77041": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38659": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23888": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "75167": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "59267": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47593": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8218": {
+  "feature": "utils",
+  "score": 3,
+  "vendor": []
+ },
+ "61131": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14122": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81694": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28182": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "66724": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "4237": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35715": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45884": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70488": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "82933": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37205": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90189": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11586": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35927": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "63873": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72037": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17543": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "19131": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "31196": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24363": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90937": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50650": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22752": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84839": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "65372": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12080": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67768": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92837": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54138": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "98513": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23211": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "75951": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74932": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1240": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23863": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6840": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73013": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "56196": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "62012": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "36707": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "71036": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "88589": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49671": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39218": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "96673": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "19055": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43931": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23608": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28287": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1331": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54931": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27022": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29706": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23385": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "32557": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21246": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "98056": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "4385": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "61697": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91592": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "32573": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "3772": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60400": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24305": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68946": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "63080": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18084": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28306": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "4381": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67772": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17273": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2244": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "53370": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89378": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74460": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91778": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "56889": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20166": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "41823": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45770": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92128": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "62347": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28385": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "66740": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54655": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "56042": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "86124": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81772": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24839": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47611": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "26056": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "61615": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95028": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95450": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18887": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74093": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81740": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "71141": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57607": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23363": {
+  "feature": "image",
+  "score": 2193,
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "20442": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68678": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47113": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "59481": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72347": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99082": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87822": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89365": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39647": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78262": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81202": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28533": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "42947": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "85420": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23347": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89670": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "9293": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11715": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92465": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78559": {
+  "feature": "map_tiles",
+  "score": 240,
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "50908": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29676": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38384": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95797": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78059": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78319": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23924": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20692": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22854": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87197": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "46219": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7091": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84903": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47538": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "41705": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47897": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27112": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "61986": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39066": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "4906": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "71848": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "93355": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "26703": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68150": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43654": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "86478": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16194": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60075": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "65525": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15305": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92206": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "88078": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "31032": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38248": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "32799": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68136": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81587": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "65918": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "88383": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "30040": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "85403": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "62747": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16037": {
+  "feature": "vendor",
+  "vendor": [
+   "lodash",
+   "__lodash_hash",
+   "lodash"
+  ]
+ },
+ "94154": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "77728": {
+  "feature": "vendor",
+  "vendor": [
+   "lodash",
+   "__lodash_hash",
+   "lodash"
+  ]
+ },
+ "26800": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "55964": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "257": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "62936": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43894": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8699": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "64957": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87184": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87109": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "34086": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "9255": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29186": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "13423": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73739": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90234": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49620": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "75964": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49494": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43581": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12709": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "97009": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35774": {
+  "feature": "vendor",
+  "vendor": [
+   "lodash",
+   "__lodash_hash",
+   "lodash"
+  ]
+ },
+ "41596": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22230": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20511": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50835": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90707": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18832": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35077": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27907": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29231": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "34963": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "93629": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21473": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5174": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18111": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74786": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24635": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8092": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43141": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "19102": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12742": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "763": {
+  "feature": "vendor",
+  "vendor": [
+   "lodash",
+   "__lodash_hash",
+   "lodash"
+  ]
+ },
+ "68174": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49488": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50536": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43968": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "36274": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67869": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91450": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "62172": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "26575": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11264": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73528": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78001": {
+  "feature": "vendor",
+  "vendor": [
+   "moment"
+  ]
+ },
+ "41218": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "72426": {
+  "feature": "utils",
+  "score": 83,
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "42584": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80888": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52007": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79047": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "59874": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "32808": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "4360": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22334": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "64184": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87510": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "66293": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "66639": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "61431": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54111": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37657": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95709": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "96161": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "40962": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60173": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21071": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84424": {
+  "feature": "vendor",
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "34463": {
+  "feature": "drag",
+  "score": 30,
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "1250": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54164": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58340": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6132": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20929": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11372": {
+  "feature": "vendor",
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "57441": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23688": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "48294": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2741": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79818": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54516": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "51366": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99981": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52082": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "41421": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57646": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "56013": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6040": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5176": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58979": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90614": {
+  "feature": "animation",
+  "score": 9,
+  "vendor": []
+ },
+ "92959": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54143": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27604": {
+  "feature": "drag",
+  "score": 25,
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "66374": {
+  "feature": "vendor",
+  "vendor": [
+   "react.element"
+  ]
+ },
+ "59117": {
+  "feature": "vendor",
+  "vendor": [
+   "react.element",
+   "react.memo",
+   "react.forward_ref"
+  ]
+ },
+ "72791": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80184": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "19727": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "36813": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45296": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79613": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14913": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "88364": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "48464": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7232": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43085": {
+  "feature": "utils",
+  "score": 3,
+  "vendor": []
+ },
+ "84784": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92068": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49991": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38693": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21277": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7543": {
+  "feature": "utils",
+  "score": 3,
+  "vendor": []
+ },
+ "28630": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24065": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1338": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17399": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "13022": {
+  "feature": "image",
+  "score": 2103,
+  "vendor": [
+   "react.element",
+   "useSyncExternalStore",
+   "@@redux"
+  ]
+ },
+ "77257": {
+  "feature": "image",
+  "score": 144,
+  "vendor": []
+ },
+ "40580": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38494": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37093": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "68858": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "63044": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "25682": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49090": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "33861": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "77176": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58849": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "4682": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "82057": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15389": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7033": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68892": {
+  "feature": "i18n_zh",
+  "score": 5,
+  "vendor": []
+ },
+ "81691": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24418": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6998": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8522": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "36465": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "13981": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54738": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79435": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38895": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8062": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50183": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87483": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92664": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79999": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45003": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45411": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "83439": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "86386": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49914": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91791": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "55981": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22318": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15912": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "98125": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "48449": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "97236": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "53510": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "81075": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "25115": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44137": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67108": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90807": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "71105": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2116": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "76531": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28948": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "69075": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99356": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43500": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2175": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6428": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5175": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47229": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99793": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95849": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "75362": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87267": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74214": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12673": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37318": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "69259": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7968": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2267": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99766": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91603": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68101": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67840": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "30085": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "41261": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47453": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73751": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87173": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15364": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "86814": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60473": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "63719": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47617": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "75837": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "82319": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "64051": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80271": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47126": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "47475": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87933": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28216": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14320": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68810": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8090": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16089": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "51351": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28519": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "97026": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1786": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "49753": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14763": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "83127": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "83389": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15444": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15009": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72367": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89695": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1216": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1903": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38760": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70578": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "26660": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80732": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70788": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35111": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "50217": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89097": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18934": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74708": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "71964": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90451": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73049": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27481": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73069": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "62141": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60382": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18128": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90899": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "75228": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14021": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "59627": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "69040": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20268": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21914": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44694": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57722": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "85252": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "59836": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "77815": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80838": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11227": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "30891": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6337": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "46890": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "46203": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39065": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18477": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58994": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14413": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73087": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "85026": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89834": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47447": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "93013": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "46768": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52433": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80984": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "7490": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90237": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "12818": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52249": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "79577": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38021": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43072": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "26692": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52990": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95513": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "96442": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "38101": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57248": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "26744": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "48004": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73370": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "56063": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "46118": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "77212": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74407": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11900": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5286": {
+  "feature": "i18n_zh",
+  "score": 5,
+  "vendor": []
+ },
+ "44542": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "97739": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "32064": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "30110": {
+  "feature": "pvp",
+  "score": 7,
+  "vendor": []
+ },
+ "11814": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43579": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39692": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18776": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "67719": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "1458": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95172": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "85353": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23544": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78502": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80414": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73741": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21777": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35129": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20216": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11813": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "63770": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11064": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "3320": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "9775": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90671": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70021": {
+  "feature": "pvp",
+  "score": 6,
+  "vendor": []
+ },
+ "94215": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17140": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12786": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12809": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "61189": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "45316": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "86385": {
+  "feature": "pvp",
+  "score": 5,
+  "vendor": []
+ },
+ "33502": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44113": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89789": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80123": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "98535": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "84882": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70995": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "42928": {
+  "feature": "i18n_zh",
+  "score": 5,
+  "vendor": []
+ },
+ "3944": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "88390": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "32264": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "29480": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "31127": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58227": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68634": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57694": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "74589": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80824": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "27812": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95281": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "96212": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "55267": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21180": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8774": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21205": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "94452": {
+  "feature": "i18n_zh",
+  "score": 5,
+  "vendor": []
+ },
+ "97274": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44009": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "66128": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "98251": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "51438": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89960": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "96005": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2269": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "83140": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8195": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "57634": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "87431": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "76322": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "52464": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "99488": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6046": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16927": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22037": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "43054": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "26118": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7230": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14353": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "55143": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "39761": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2369": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16809": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44460": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "64274": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "70227": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "54241": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "61643": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28735": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87461": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58003": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "41650": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5985": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17787": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14414": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "95681": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "83042": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16422": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72845": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "92910": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "72507": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "78565": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37861": {
+  "feature": "pvp",
+  "score": 5,
+  "vendor": []
+ },
+ "91732": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "46925": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "73713": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "82631": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "77474": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18036": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58585": {
+  "feature": "pvp",
+  "score": 5,
+  "vendor": []
+ },
+ "99773": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "40307": {
+  "feature": "i18n_zh",
+  "score": 6,
+  "vendor": []
+ },
+ "81230": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "66307": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90526": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "28531": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "9209": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "56299": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "35447": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47691": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18115": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "42479": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "88052": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91065": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17562": {
+  "feature": "pvp",
+  "score": 5,
+  "vendor": []
+ },
+ "63736": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80740": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "41062": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22439": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8173": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "89905": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "19492": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47552": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "25699": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "907": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "76556": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "60837": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "31081": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "80033": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "48277": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58948": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8997": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "87956": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "23412": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "53306": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5030": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "58973": {
+  "feature": "vendor",
+  "vendor": [
+   "idb"
+  ]
+ },
+ "49570": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7095": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "1189": {
+  "feature": "i18n_zh",
+  "score": 5,
+  "vendor": []
+ },
+ "73222": {
+  "feature": "i18n_zh",
+  "score": 3,
+  "vendor": []
+ },
+ "92055": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "86606": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "68006": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "44568": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "47967": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "37178": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "90529": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "24654": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "53416": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "91128": {
+  "feature": "i18n_zh",
+  "score": 4,
+  "vendor": []
+ },
+ "1": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "2": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "3": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "4": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "5": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "6": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "7": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "8": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "9": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "10": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "11": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "12": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "13": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "14": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "15": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "16": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "17": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "18": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "19": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "20": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "21": {
+  "feature": "unknown",
+  "score": 0
+ },
+ "22": {
+  "feature": "unknown",
+  "score": 0
+ }
+}

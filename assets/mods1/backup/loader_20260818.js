@@ -1,0 +1,177 @@
+// loader.js - 統一管理所有小工具的載入
+// index.html 只需要掛這一支，其他工具都寫在下面的 CORE / TOOLS 清單裡集中管理
+console.log("[LOADER] 小工具載入器啟動");
+
+(function(){
+    // ---- 共用基礎模組：一律載入，不可在面板關閉 ----
+    // 其他工具會依賴這些（UWPanel 外殼、RFStore 遊戲資料），關掉會連帶壞掉
+    const CORE = [
+        { id: "uw_panel", src: "./uw_panel.js", css: "./uw_panel.css" },
+        { id: "rf_store", src: "./rf_store.js", css: null }
+    ];
+
+    // ---- 在這裡集中管理所有小工具 ----
+    // id: 顯示用名稱
+    // src: JS 檔案路徑（沒有的話留 null）
+    // css: CSS 檔案路徑（沒有的話留 null）
+    // enabled: 預設要不要載入（之後也可以在畫面上的管理面板即時開關，存在 localStorage）
+    const TOOLS = [
+        { id: "custom_attackmap",       src: "./custom_attackmap.js",       css: "./custom_attackmap.css",       enabled: true  },
+        { id: "uw_hook",                src: "./uw_hook.js",                css: null,                           enabled: true  },
+        { id: "show_level_cap",         src: "./show_level_cap.js",         css: null,                           enabled: true  },
+        { id: "restore_power_display",  src: "./restore_power_display.js",  css: null,                           enabled: true  },
+        { id: "pvp_opponent_persist",   src: "./pvp_opponent_persist.js",   css: null,                           enabled: true  },
+        { id: "city_reward_tracker",    src: "./city_reward_tracker.js",    css: "./city_reward_tracker.css",    enabled: true  },
+        { id: "rf_audio_panel",         src: "./rf_audio_panel.js",         css: null,                           enabled: true  },
+        { id: "rf_mod",                 src: "./rf_mod.js",                 css: "./rf_mod.css",                 enabled: false }, // 目前沒用處，預設關閉
+        { id: "rf_account_manager",     src: "./rf_account_manager.js",     css: null,                           enabled: true  }
+    ];
+
+    const STORAGE_KEY = "uw_loader_config";
+
+    function loadConfig(){
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+            return {};
+        }
+    }
+
+    function saveConfig(cfg){
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+        } catch (e) {
+            console.warn("[LOADER] 設定儲存失敗", e);
+        }
+    }
+
+    function isEnabled(tool, cfg){
+        // localStorage 裡有記錄就用記錄的值，沒有就用 TOOLS 清單裡的預設值
+        return Object.prototype.hasOwnProperty.call(cfg, tool.id) ? cfg[tool.id] : tool.enabled;
+    }
+
+    function injectScript(tool){
+        const s = document.createElement("script");
+        s.src = tool.src;
+        // 動態建立的 script 預設是 async，defer 對它無效；
+        // 要讓它們照插入順序執行必須明確設 async = false，
+        // 否則 uw_panel / rf_store 這些共用模組不保證會先跑完。
+        s.async = false;
+        s.dataset.uwTool = tool.id;
+        s.onerror = function(){
+            console.warn("[LOADER] 載入失敗：" + tool.id + "（" + tool.src + "）找不到檔案或路徑錯誤");
+        };
+        document.head.appendChild(s);
+        console.log("[LOADER] 載入 JS：" + tool.id);
+    }
+
+    function injectStyle(tool){
+        const l = document.createElement("link");
+        l.rel = "stylesheet";
+        l.href = tool.css;
+        l.dataset.uwTool = tool.id;
+        l.onerror = function(){
+            console.warn("[LOADER] 載入失敗：" + tool.id + "（" + tool.css + "）找不到檔案或路徑錯誤");
+        };
+        document.head.appendChild(l);
+        console.log("[LOADER] 載入 CSS：" + tool.id);
+    }
+
+    function inject(tool){
+        if (tool.css) injectStyle(tool); // CSS 先載入，避免無樣式畫面閃一下(FOUC)
+        if (tool.src) injectScript(tool);
+    }
+
+    function loadEnabledTools(){
+        const cfg = loadConfig();
+        CORE.forEach(inject);            // 共用模組先掛，async=false 保證先執行
+        TOOLS.forEach(tool => {
+            if (!isEnabled(tool, cfg)) return;
+            inject(tool);
+        });
+    }
+
+    // ---- 畫面上的管理面板：開關每支工具（改動後需要重新整理頁面才會生效）----
+    function buildPanel(){
+        if (!window.UWPanel) {
+            console.warn("[LOADER] 找不到 UWPanel，管理面板略過");
+            return;
+        }
+
+        const panel = window.UWPanel.create({
+            id: "uw_loader",
+            title: "[小工具管理器]",
+            tabTitle: "小工具",
+            side: "left",
+            width: "220px",
+            hint: "改動後重新整理頁面才會生效"
+        });
+        if (!panel) return;
+
+        const cfg = loadConfig();
+
+        CORE.forEach(tool => {
+            const row = document.createElement("div");
+            row.className = "uw-panel-row";
+            const box = document.createElement("input");
+            box.type = "checkbox";
+            box.checked = true;
+            box.disabled = true;
+            box.title = "共用基礎模組，無法關閉";
+            const name = document.createElement("span");
+            name.textContent = tool.id + " ";
+            const badge = document.createElement("small");
+            badge.style.opacity = ".5";
+            badge.textContent = "[core]";
+            name.appendChild(badge);
+            row.append(box, name);
+            panel.body.appendChild(row);
+        });
+
+        TOOLS.forEach(tool => {
+            const row = document.createElement("label");
+            row.className = "uw-panel-row";
+            const box = document.createElement("input");
+            box.type = "checkbox";
+            box.checked = isEnabled(tool, cfg);
+            box.dataset.id = tool.id;
+            const name = document.createElement("span");
+            name.textContent = tool.id + " ";
+            if (tool.css) {
+                const badge = document.createElement("small");
+                badge.style.opacity = ".5";
+                badge.textContent = "[css]";
+                name.appendChild(badge);
+            }
+            row.append(box, name);
+            panel.body.appendChild(row);
+        });
+
+        panel.body.addEventListener("change", function(e){
+            if (!e.target.matches("input[type=checkbox]")) return;
+            const id = e.target.dataset.id;
+            if (!id) return;
+            const newCfg = loadConfig();
+            newCfg[id] = e.target.checked;
+            saveConfig(newCfg);
+        });
+    }
+
+    function whenPanelReady(fn){
+        if (window.UWPanel) { fn(); return; }
+        document.addEventListener("uw-panel-ready", fn, { once: true });
+    }
+
+    function start(){
+        whenPanelReady(buildPanel);
+    }
+
+    loadEnabledTools();
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", start, { once: true });
+    } else {
+        start();
+    }
+})();

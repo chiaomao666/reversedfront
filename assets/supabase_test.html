@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<title>Supabase 連線測試</title>
+<style>
+  body{font-family:monospace;background:#111;color:#e8e4d5;padding:30px;font-size:14px;}
+  input{background:#222;color:#fff;border:1px solid #444;padding:8px;width:500px;margin:4px 0;}
+  button{background:#d9a441;color:#111;border:none;padding:10px 20px;cursor:pointer;margin-top:10px;font-size:14px;}
+  .ok{color:#6f9b5c;} .err{color:#c9553d;} .info{color:#5a8fc9;}
+  pre{background:#1a1a1a;padding:12px;margin-top:10px;white-space:pre-wrap;word-break:break-all;}
+</style>
+</head>
+<body>
+<h2>Supabase 連線測試</h2>
+<p>填入金鑰後按測試，確認有沒有連上去</p>
+<br>
+<label>SUPABASE_URL<br><input id="url" placeholder="https://xxxxxxxx.supabase.co" /></label><br>
+<label>ANON KEY<br><input id="key" placeholder="eyJhbGci..." /></label><br>
+<button onclick="test()">測試連線</button>
+<div id="result"></div>
+
+<script>
+async function test(){
+  const url = document.getElementById('url').value.trim();
+  const key = document.getElementById('key').value.trim();
+  const res = document.getElementById('result');
+  res.innerHTML = '<p class="info">測試中…</p>';
+
+  if(!url || !key){ res.innerHTML = '<p class="err">請填入 URL 和 Key</p>'; return; }
+
+  // 測試1：讀取 cities 資料表
+  try {
+    const r = await fetch(`${url}/rest/v1/cities?select=city_id,title&limit=5`, {
+      headers:{ 'apikey': key, 'Authorization': `Bearer ${key}` }
+    });
+    const text = await r.text();
+    if(r.ok){
+      const data = JSON.parse(text);
+      res.innerHTML = `<p class="ok">✓ 連線成功！cities 資料表目前有 ${data.length} 筆（上限顯示5筆）</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+    } else {
+      res.innerHTML = `<p class="err">✗ 連線失敗：HTTP ${r.status}</p><pre>${text}</pre>`;
+    }
+  } catch(e) {
+    res.innerHTML = `<p class="err">✗ 網路錯誤：${e.message}</p>`;
+  }
+
+  // 測試2：試寫入一筆假資料
+  try {
+    const r2 = await fetch(`${url}/rest/v1/cities`, {
+      method: 'POST',
+      headers:{
+        'apikey': key,
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates'
+      },
+      body: JSON.stringify([{
+        city_id: 99999,
+        title: '測試城市（可刪除）',
+        updated_at: new Date().toISOString()
+      }])
+    });
+    const text2 = await r2.text();
+    if(r2.ok){
+      res.innerHTML += `<p class="ok">✓ 寫入測試成功！資料有推上 Supabase</p>`;
+    } else {
+      res.innerHTML += `<p class="err">✗ 寫入失敗：HTTP ${r2.status}</p><pre>${text2}</pre><p>可能原因：Row Level Security 沒有開放寫入，或資料表欄位不符合</p>`;
+    }
+  } catch(e) {
+    res.innerHTML += `<p class="err">✗ 寫入網路錯誤：${e.message}</p>`;
+  }
+}
+</script>
+</body>
+</html>

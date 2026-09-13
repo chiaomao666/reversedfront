@@ -1,0 +1,594 @@
+{
+ "login": [
+  {
+   "module": 23363,
+   "hits": 68
+  },
+  {
+   "module": 13022,
+   "hits": 57
+  },
+  {
+   "module": 78559,
+   "hits": 11
+  },
+  {
+   "module": 72426,
+   "hits": 11
+  },
+  {
+   "module": 20929,
+   "hits": 7
+  },
+  {
+   "module": 6132,
+   "hits": 2
+  },
+  {
+   "module": 34463,
+   "hits": 1
+  },
+  {
+   "module": 27604,
+   "hits": 1
+  }
+ ],
+ "actor_card": [
+  {
+   "module": 23363,
+   "hits": 882
+  },
+  {
+   "module": 13022,
+   "hits": 879
+  },
+  {
+   "module": 91128,
+   "hits": 5
+  },
+  {
+   "module": 78559,
+   "hits": 3
+  },
+  {
+   "module": 72426,
+   "hits": 1
+  },
+  {
+   "module": 56013,
+   "hits": 1
+  },
+  {
+   "module": 52249,
+   "hits": 1
+  },
+  {
+   "module": 79577,
+   "hits": 1
+  }
+ ],
+ "recruit": [
+  {
+   "module": 23363,
+   "hits": 83
+  },
+  {
+   "module": 13022,
+   "hits": 83
+  }
+ ],
+ "attack": [
+  {
+   "module": 23363,
+   "hits": 313
+  },
+  {
+   "module": 13022,
+   "hits": 313
+  }
+ ],
+ "battle_result": [
+  {
+   "module": 23363,
+   "hits": 33
+  },
+  {
+   "module": 13022,
+   "hits": 31
+  },
+  {
+   "module": 78559,
+   "hits": 2
+  },
+  {
+   "module": 72426,
+   "hits": 2
+  },
+  {
+   "module": 27604,
+   "hits": 2
+  }
+ ],
+ "nation": [
+  {
+   "module": 23363,
+   "hits": 453
+  },
+  {
+   "module": 13022,
+   "hits": 453
+  }
+ ],
+ "union": [
+  {
+   "module": 23363,
+   "hits": 261
+  },
+  {
+   "module": 13022,
+   "hits": 261
+  },
+  {
+   "module": 91128,
+   "hits": 2
+  }
+ ],
+ "election": [
+  {
+   "module": 23363,
+   "hits": 73
+  },
+  {
+   "module": 13022,
+   "hits": 56
+  },
+  {
+   "module": 78559,
+   "hits": 17
+  },
+  {
+   "module": 72426,
+   "hits": 17
+  },
+  {
+   "module": 34463,
+   "hits": 10
+  },
+  {
+   "module": 27604,
+   "hits": 7
+  },
+  {
+   "module": 23544,
+   "hits": 1
+  },
+  {
+   "module": 58973,
+   "hits": 1
+  }
+ ],
+ "pvp": [
+  {
+   "module": 23363,
+   "hits": 51
+  },
+  {
+   "module": 13022,
+   "hits": 51
+  },
+  {
+   "module": 68892,
+   "hits": 1
+  },
+  {
+   "module": 79435,
+   "hits": 1
+  },
+  {
+   "module": 2116,
+   "hits": 1
+  },
+  {
+   "module": 5175,
+   "hits": 1
+  },
+  {
+   "module": 47126,
+   "hits": 1
+  },
+  {
+   "module": 5286,
+   "hits": 1
+  }
+ ],
+ "city": [
+  {
+   "module": 23363,
+   "hits": 371
+  },
+  {
+   "module": 13022,
+   "hits": 317
+  },
+  {
+   "module": 78559,
+   "hits": 54
+  },
+  {
+   "module": 72426,
+   "hits": 26
+  },
+  {
+   "module": 91128,
+   "hits": 22
+  },
+  {
+   "module": 27604,
+   "hits": 16
+  },
+  {
+   "module": 8218,
+   "hits": 7
+  },
+  {
+   "module": 43085,
+   "hits": 7
+  }
+ ],
+ "resource": [
+  {
+   "module": 23363,
+   "hits": 484
+  },
+  {
+   "module": 13022,
+   "hits": 475
+  },
+  {
+   "module": 78559,
+   "hits": 9
+  },
+  {
+   "module": 72426,
+   "hits": 9
+  },
+  {
+   "module": 27604,
+   "hits": 2
+  },
+  {
+   "module": 79047,
+   "hits": 1
+  },
+  {
+   "module": 21071,
+   "hits": 1
+  },
+  {
+   "module": 84424,
+   "hits": 1
+  }
+ ],
+ "mission": [
+  {
+   "module": 23363,
+   "hits": 52
+  },
+  {
+   "module": 13022,
+   "hits": 41
+  },
+  {
+   "module": 78559,
+   "hits": 11
+  },
+  {
+   "module": 72426,
+   "hits": 8
+  },
+  {
+   "module": 27604,
+   "hits": 5
+  },
+  {
+   "module": 73381,
+   "hits": 2
+  },
+  {
+   "module": 34463,
+   "hits": 2
+  },
+  {
+   "module": 763,
+   "hits": 1
+  }
+ ],
+ "chat": [
+  {
+   "module": 23363,
+   "hits": 207
+  },
+  {
+   "module": 13022,
+   "hits": 193
+  },
+  {
+   "module": 78559,
+   "hits": 14
+  },
+  {
+   "module": 72426,
+   "hits": 12
+  },
+  {
+   "module": 27604,
+   "hits": 6
+  },
+  {
+   "module": 34463,
+   "hits": 2
+  },
+  {
+   "module": 87510,
+   "hits": 1
+  },
+  {
+   "module": 21071,
+   "hits": 1
+  }
+ ],
+ "mail_gift": [
+  {
+   "module": 23363,
+   "hits": 160
+  },
+  {
+   "module": 13022,
+   "hits": 156
+  },
+  {
+   "module": 78559,
+   "hits": 4
+  },
+  {
+   "module": 72426,
+   "hits": 3
+  },
+  {
+   "module": 6132,
+   "hits": 1
+  },
+  {
+   "module": 20929,
+   "hits": 1
+  },
+  {
+   "module": 27604,
+   "hits": 1
+  },
+  {
+   "module": 59117,
+   "hits": 1
+  }
+ ],
+ "settings": [
+  {
+   "module": 23363,
+   "hits": 418
+  },
+  {
+   "module": 13022,
+   "hits": 408
+  },
+  {
+   "module": 78559,
+   "hits": 10
+  },
+  {
+   "module": 72426,
+   "hits": 10
+  },
+  {
+   "module": 34463,
+   "hits": 3
+  },
+  {
+   "module": 27604,
+   "hits": 3
+  },
+  {
+   "module": 12080,
+   "hits": 1
+  },
+  {
+   "module": 58849,
+   "hits": 1
+  }
+ ],
+ "map_render": [
+  {
+   "module": 23363,
+   "hits": 393
+  },
+  {
+   "module": 13022,
+   "hits": 234
+  },
+  {
+   "module": 78559,
+   "hits": 159
+  },
+  {
+   "module": 72426,
+   "hits": 36
+  },
+  {
+   "module": 91128,
+   "hits": 32
+  },
+  {
+   "module": 27604,
+   "hits": 12
+  },
+  {
+   "module": 20929,
+   "hits": 7
+  },
+  {
+   "module": 34463,
+   "hits": 6
+  }
+ ],
+ "router": [
+  {
+   "module": 23363,
+   "hits": 94
+  },
+  {
+   "module": 13022,
+   "hits": 50
+  },
+  {
+   "module": 78559,
+   "hits": 43
+  },
+  {
+   "module": 72426,
+   "hits": 40
+  },
+  {
+   "module": 27604,
+   "hits": 12
+  },
+  {
+   "module": 34463,
+   "hits": 10
+  },
+  {
+   "module": 84424,
+   "hits": 9
+  },
+  {
+   "module": 21071,
+   "hits": 7
+  }
+ ],
+ "websocket": [
+  {
+   "module": 23363,
+   "hits": 36
+  },
+  {
+   "module": 13022,
+   "hits": 36
+  }
+ ],
+ "timer_anim": [
+  {
+   "module": 23363,
+   "hits": 80
+  },
+  {
+   "module": 78559,
+   "hits": 46
+  },
+  {
+   "module": 72426,
+   "hits": 37
+  },
+  {
+   "module": 13022,
+   "hits": 26
+  },
+  {
+   "module": 27604,
+   "hits": 22
+  },
+  {
+   "module": 34463,
+   "hits": 13
+  }
+ ],
+ "form_ui": [
+  {
+   "module": 23363,
+   "hits": 552
+  },
+  {
+   "module": 13022,
+   "hits": 312
+  },
+  {
+   "module": 78559,
+   "hits": 235
+  },
+  {
+   "module": 72426,
+   "hits": 214
+  },
+  {
+   "module": 27604,
+   "hits": 75
+  },
+  {
+   "module": 34463,
+   "hits": 72
+  },
+  {
+   "module": 84424,
+   "hits": 28
+  },
+  {
+   "module": 21071,
+   "hits": 8
+  }
+ ],
+ "storage": [
+  {
+   "module": 23363,
+   "hits": 13
+  },
+  {
+   "module": 13022,
+   "hits": 13
+  },
+  {
+   "module": 59145,
+   "hits": 1
+  }
+ ],
+ "image": [
+  {
+   "module": 23363,
+   "hits": 1578
+  },
+  {
+   "module": 13022,
+   "hits": 1517
+  },
+  {
+   "module": 77257,
+   "hits": 144
+  },
+  {
+   "module": 78559,
+   "hits": 60
+  },
+  {
+   "module": 72426,
+   "hits": 48
+  },
+  {
+   "module": 27604,
+   "hits": 26
+  },
+  {
+   "module": 34463,
+   "hits": 10
+  },
+  {
+   "module": 84424,
+   "hits": 5
+  }
+ ]
+}

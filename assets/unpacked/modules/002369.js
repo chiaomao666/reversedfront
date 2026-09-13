@@ -1,0 +1,5 @@
+
+      "use strict";
+
+      e.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADcAAAAwCAMAAACCABLMAAAAM1BMVEVHcEz////////////////////////////////////////////////////////////////P0YphAAAAEHRSTlMAYcKZSAvRGfUvs4Opc97qLZg57wAAAQRJREFUeNqdlksSwyAMQ8PfJkB0/9N2pkzrLC3e/i0sOyLXAWWudPG0AVReyxWQTGtTANys1RIA9EJqGgGgNlILD8APV258mZymfWupcPEv4GC4KVt7lIx/I4GNf5PY+DexkPFvltLxswvPFX8mG/9mFDJ+duEaYYi6R3vwIni1IHiRmESM6B3uxptHOY295gmDqC8VGER9DbxZ3kyyAOCvuUScLZzJxGiL0swbQmlGjtgs12wt9BpHLr9kJDWmEUbbi+++/PUB7AEYKxSXVjr+5Otq7hvhv1E7Sb6VVc68BJwUpZ5VV4sgC9b6lX50WlgwpDu1WWGskS8nd4/1S08z+/8VPvarIIWRBf2KAAAAAElFTkSuQmCC";
+    }

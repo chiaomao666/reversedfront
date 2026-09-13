@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,target-densityDpi=device-dpi" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="./logo192.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <title>RF</title>
+
+    <!-- 小工具載入器 --><script defer="defer" src="./loader.js"></script>
+    <!-- 主程式 --><script defer="defer" src="./static/js/main.94fae2cd.js"></script>
+    <link href="./static/css/main.f4ae5b14.css" rel="stylesheet">
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+    // aria-hidden 焦點修正（2026-08-18 效能改寫）
+    //
+    // 舊版的問題：observe 用 attributes:true（不限屬性），React 改任何 style/class 都會觸發；
+    // callback 又對整份文件做 querySelectorAll，而且裡面的 setAttribute 會再產生 attribute
+    // mutation 餵回自己。動畫期間等於每幀做數十次全文件查詢，是主執行緒最大的負擔來源。
+    //
+    // 新版三項修正：
+    //   1. attributeFilter 只看 aria-hidden，其他屬性變動完全不進 callback
+    //   2. requestAnimationFrame 合併，同一幀內的大量 mutation 只處理一次
+    //   3. 只處理「變動到的那個節點」，不再重掃整份文件
+    (function () {
+        var scheduled = false;
+        var queue = new Set();
+
+        // 把單一容器內殘留的可聚焦元素關掉，並把焦點移出去
+        function fixOne(el) {
+            if (!el || el.nodeType !== 1 || !el.isConnected) return;
+            if (el.getAttribute('aria-hidden') !== 'true') return;
+
+            if (el.getAttribute('tabindex') === '0') {
+                el.setAttribute('tabindex', '-1');
+            }
+            el.querySelectorAll('[tabindex="0"]').forEach(function (child) {
+                child.setAttribute('tabindex', '-1');
+            });
+
+            var active = document.activeElement;
+            if (active && active !== document.body && el.contains(active)) {
+                active.blur();
+            }
+        }
+
+        function flush() {
+            scheduled = false;
+            var targets = queue;
+            queue = new Set();
+            targets.forEach(fixOne);
+        }
+
+        function enqueue(el) {
+            queue.add(el);
+            if (scheduled) return;
+            scheduled = true;
+            requestAnimationFrame(flush);
+        }
+
+        var observer = new MutationObserver(function (list) {
+            for (var i = 0; i < list.length; i++) {
+                var m = list[i];
+                if (m.type === 'attributes') {
+                    enqueue(m.target);
+                    continue;
+                }
+                // 新增的子樹本身就可能帶著 aria-hidden，但查詢範圍只限這棵子樹，不掃全文件
+                for (var j = 0; j < m.addedNodes.length; j++) {
+                    var node = m.addedNodes[j];
+                    if (node.nodeType !== 1) continue;
+                    if (node.getAttribute('aria-hidden') === 'true') enqueue(node);
+                    var inner = node.querySelectorAll('[aria-hidden="true"]');
+                    for (var k = 0; k < inner.length; k++) enqueue(inner[k]);
+                }
+            }
+        });
+
+        observer.observe(document.body, {
+            subtree: true,
+            childList: true,
+            attributes: true,
+            attributeFilter: ['aria-hidden']
+        });
+
+        // 啟動時補掃一次，涵蓋這支腳本執行前就已存在的節點
+        document.querySelectorAll('[aria-hidden="true"]').forEach(enqueue);
+    })();
+    </script>
+</body>
+
+</html>

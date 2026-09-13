@@ -1,0 +1,5 @@
+
+      "use strict";
+
+      e.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlYAAAA9AQMAAABVx7XsAAAABlBMVEVHcEycgE7BxDEZAAAAAXRSTlMAQObYZgAAACdJREFUeNrt2DENADAIADCYf8sEDOzk4GhlNDu21AsAAAAAfvLowQzSGAP/bn/1hwAAAABJRU5ErkJggg==";
+    }

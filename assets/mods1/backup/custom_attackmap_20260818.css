@@ -1,0 +1,92 @@
+/**
+ * 自定義樣式補丁 (Custom Styles Patch)
+ * 目的：在原始版本 CSS 基礎上覆蓋專屬的視覺效果。
+ */
+
+
+/* 將時間/分數移到旗幟容器中央 */
+.Attackmap_nation_battle_close_roll_call_at__EmSiH {
+    position: absolute !important;
+    left: 8% !important;
+    /* 調整此數值（如 60% 到 70%）來改變上下位置 */
+    top: 40% !important; 
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
+    
+    /* 調整字體大小，避免過大擠壓空間 */
+    font-size: clamp(1.5rem, 4vh, 2.5rem) !important;
+    
+    /* 確保文字在最上層 */
+    z-index: 10 !important;
+    
+    /* 保持您喜歡的視覺風格 */
+    font-family: var(--font_text_figures) !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+    background: rgba(0,0,0,0.6) !important;
+    padding: 2px 10px !important;
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+}
+
+.Attackmap_markerCityBox__9SxDr {
+    height: calc(40vh*.0625) !important;
+    position: relative !important;
+    width: calc(30vw*.0625) !important;
+    top: 50% !important;
+    left: 25% !important;
+    height: 100% !important;
+    width: 100% !important;
+    border: 1px solid #000 !important;
+    background-color: white !important;
+}
+
+/* 3. 城市點擊感應區域優化 - 擴大 3 倍點擊範圍 */
+.Attackmap_markerClickSensor__VAWI1 {
+    height: 300% !important;
+    width: 300% !important;
+    left: -100% !important;
+    top: -100% !important;
+    position: absolute !important;
+}
+
+/* 4. 國家圖示與右側旗幟定位微調 */
+.Attackmap_nation_battle_nation_icon__CDZPd {
+    width: calc(5vw) !important;
+    left: 50% !important;
+    top: 45% !important;
+}
+
+/* 5. 城市標記名稱樣式調整 */
+.Attackmap_markerCityName__8GqTG {
+    bottom: 10% !important;
+    font-weight: 700 !important;
+}
+
+.Attackmap_marker2swords__g3aDl {
+    position: absolute !important;
+    -webkit-transform: translate(-50%) !important;
+    transform: translate(-50%) !important;
+    left: 50% !important;
+    top: -100% !important;
+}
+
+/* 6. 戰鬥分數專用類別 (若 JS 中有注入此類別) */
+.battleScoreBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    flex: 1;
+}
+.battleScore {
+    font-family: var(--font_text_figures);
+    font-size: clamp(3rem, 8vh, 6rem);
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(0, 0, 0)
+}

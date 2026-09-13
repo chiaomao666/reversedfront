@@ -1,0 +1,23 @@
+{
+  "accounts": [
+    {
+      "email": "748691",
+      "password": "1",
+      "home_union": 3757
+    },
+    {
+      "email": "早安",
+      "password": "123456789",
+      "home_union": ""
+    }
+  ],
+  "settings": {
+    "max_concurrent": 2,
+    "delay_between_accounts": 2.0,
+    "delay_between_unions": 1.0,
+    "enable_ws_debug": false,
+    "common_union_ids": [
+      281
+    ]
+  }
+}

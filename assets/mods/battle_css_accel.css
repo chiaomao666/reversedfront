@@ -1,0 +1,44 @@
+/*
+ * 據點戰動畫硬體加速 CSS (Battle CSS Acceleration)
+ * 純 CSS,完全不碰任何 JS、不碰 bundle、不碰 script 標籤。
+ *
+ * 原理:
+ *  - 據點戰單位動畫是 react-responsive-spritesheet 用 background-position
+ *    逐幀切換 sprite 圖。瀏覽器在合成(Composite)層繪製背景移動,
+ *    開啓硬體加速後由 GPU 分層處理,可減輕主執行緒/合成執行緒負擔,
+ *    減少人多時動畫的掉幀與卡頓。
+ *  - 用 transform: translateZ(0) 強制開啓 GPU 分層(比 will-change 更穩定,
+ *    will-change 在長時間動畫下可能被瀏覽器收回)。
+ *  - 動畫期間給 body 的 overflow 不造成重排:僅加 backface-visibility。
+ *
+ * 選擇器覆蓋:
+ *  - 據點戰容器(class 含 battle/zone 等,見下方),以及 spritesheet 根元素
+ *    的通用兜底(div 內含背景動畫樣式)。
+ *  若官網版本 class 名不同,可在此檔下方自行補選擇器。
+ */
+
+/* spritesheet 根元素:react-responsive-spritesheet 會掛上 data-testid 或 style,
+   通用匹配其直接容器(背景圖) */
+div[style*="background-image"][style*="background-position"],
+.spritesheet-container,
+.zone-battle .spritesheet,
+#zone-battle div[style*="background-image"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* 據點戰主容器整層硬體加速(人多的戰場,分層後背景動畫不拖累前景重繪) */
+.zone-battle,
+.battle-container,
+div[class*="nationbattle"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* 每單位 sprite 圖元:開啓自己的合成層 */
+.spritesheet-wrapper div[style*="background-image"],
+div[style*="background-image"][style*="step"] {
+    transform: translateZ(0);
+    will-change: background-position, transform;
+}

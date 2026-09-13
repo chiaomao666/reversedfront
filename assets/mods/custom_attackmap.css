@@ -1,0 +1,13 @@
+/** Custom AttackMap CSS v5.0 - target main.d3867357.js */
+.Attackmap_markerCityBox__9SxDr{position:relative!important;top:50%!important;left:25%!important;width:100%!important;height:100%!important;border:1px solid #000!important;background-color:white!important}
+.Attackmap_markerClickSensor__VAWI1{position:absolute!important;width:300%!important;height:300%!important;left:-100%!important;top:-100%!important}
+.Attackmap_nation_battle_nation_icon__CDZPd{width:5vw!important;left:50%!important;top:45%!important}
+.Attackmap_markerCityName__8GqTG{bottom:10%!important;font-weight:700!important}
+.Attackmap_marker2swords__g3aDl{position:absolute!important;left:50%!important;top:-100%!important;-webkit-transform:translate(-50%)!important;transform:translate(-50%)!important}
+.battleScoreBox{display:flex;justify-content:center;align-items:center;margin:20px 0;flex:1}
+.battleScore{font-family:var(--font_text_figures,sans-serif);font-size:clamp(3rem,8vh,6rem);font-weight:700;color:#fff;background:rgba(0,0,0,.6);padding:10px 20px;border-radius:10px;border:2px solid rgb(0,0,0)}
+.Attackmap_nation_battle_close_roll_call_at__EmSiH{visibility:hidden!important}
+#rf-attackmap-status-frame-v50.rf-attackmap-status-frame{box-sizing:border-box;height:28px;min-width:94px;padding:0 10px;font-family:var(--font_text_figures,sans-serif);font-size:17px}
+#rf-attackmap-status-frame-v50.rf-attackmap-status-frame.rf-status-score{min-width:92px;gap:4px}
+#rf-attackmap-status-frame-v50.rf-attackmap-status-frame.rf-status-countdown{min-width:100px}
+#rf-attackmap-status-frame-v50.rf-attackmap-status-frame .rf-status-side{font-size:16px}
