@@ -1,14 +1,10 @@
 name: Deploy Pages
 
-# 站台是 site/。劇情 JSON 在版控裡只有一份 data/，部署時複製進 site/data/，
-# 所以 repo 內不會有兩份一模一樣的資料。
-
 on:
   push:
     branches: [main]
     paths:
-      - 'site/**'
-      - 'data/**'
+      - 'assets/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -27,16 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 把劇情資料複製進站台
-        run: |
-          rm -rf site/data
-          cp -r data site/data
-
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: assets
 
   deploy:
     needs: build
