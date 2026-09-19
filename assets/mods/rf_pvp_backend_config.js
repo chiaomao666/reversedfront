@@ -22,6 +22,16 @@
     rankingSecret,
   });
 
+  // 守衛初始化時會呼叫這個函式取得設定（只會被呼叫一次，呼叫後自動清除）
+  window.__RF_PVP_CONSUME_BACKEND_CONFIG__ = function() {
+    return {
+      endpoint: pvpEndpoint,
+      writeSecret: pvpKey,
+      rankingEndpoint,
+      rankingSecret,
+    };
+  };
+
   // 目前守衛使用的相容欄位。
   window.RF_PVP_BACKEND_ENDPOINT = pvpEndpoint;
   window.RF_PVP_WRITE_SECRET = pvpKey;
