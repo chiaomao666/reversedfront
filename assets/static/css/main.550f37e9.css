@@ -47694,6 +47694,26 @@ svg.leaflet-image-layer.leaflet-interactive path {
     font-weight: 700
 }
 
+.Attackcondition_foundsBox2__anjOY {
+    font-size: calc(min(57vw, 100vh)*.025);
+    height: calc(min(57vw, 100vh)*.07187);
+    left: 20vw;
+    position: absolute;
+    top: calc(min(57vw, 100vh)*.02875)
+}
+
+.Attackcondition_foundsBox2__anjOY .Attackcondition_itemIcon__kWJW6 {
+    display: inline-block;
+    height: 100%
+}
+
+.Attackcondition_foundsBox2__anjOY .Attackcondition_itemText__6gD0S {
+    display: inline-block;
+    font-family: Gelasio;
+    font-family: var(--font_text_figures);
+    font-weight: 700
+}
+
 .Attackcondition_statusText__fO3U- {
     font-size: calc(min(57vw, 100vh)*.06625);
     left: 3vw;

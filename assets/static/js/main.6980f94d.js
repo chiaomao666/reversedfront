@@ -33591,7 +33591,7 @@
                     })
                 },
                 cS = () => {
-                    var e, t, n, o, a, i, s, c, d, u, p, b, f, M, m, A, h, z, g, O, v, y, _, q, x, w, W, R;
+                    var _tmp, e, t, n, o, a, i, s, c, d, u, p, b, f, M, m, A, h, z, g, O, v, y, _, q, x, w, W, R;
                     const {
                         tt: k
                     } = Vm(), L = um(), S = Tu(), N = DM(), C = G();
@@ -34541,7 +34541,7 @@
                                         }), (0, Ru.jsx)("div", {
                                             className: Hk,
                                             children: (0, Ru.jsx)(b_, {
-                                                children: JM(null === (_ = L.userProfile) || void 0 === _ ? void 0 : _.media)
+                                                children: JM(null === (_tmp = L.userProfile) || void 0 === _tmp ? void 0 : _tmp.media)
                                             })
                                         })]
                                     }), (0, Ru.jsx)(fh, {
@@ -51213,6 +51213,7 @@
                     bgImg_chain: "Attackcondition_bgImg_chain__AoKFe",
                     leftBox: "Attackcondition_leftBox__2o-q+",
                     foundsBox: "Attackcondition_foundsBox__anjOY",
+                    foundsBox2: "Attackcondition_foundsBox2__anjOY",
                     itemIcon: "Attackcondition_itemIcon__kWJW6",
                     itemText: "Attackcondition_itemText__6gD0S",
                     statusText: "Attackcondition_statusText__fO3U-",
@@ -51242,7 +51243,7 @@
                     firstTimeText: "Attackcondition_firstTimeText__DpE-J"
                 },
                 rQ = (n.p, () => {
-                    var e, t, n;
+                    var e, t, n, _tmp;
                     const {
                         tt: o
                     } = Vm(), a = Tu(), i = um();
@@ -51371,6 +51372,21 @@
                                                 },
                                                 children: ["(-", null === c || void 0 === c ? void 0 : c.energy_charge, ")"]
                                             }), " /", " ", i.getUser_maxEnergyByLevel()]
+                                        })]
+                                    })
+                                }), (0, Ru.jsx)(fh, {
+                                    effect: { sound: "/audio/sound_effect/SE1.mp3" },
+                                    onClick: e => { }, // 銅錢目前可能沒有點擊事件
+                                    children: (0, Ru.jsxs)("div", {
+                                        className: aQ.foundsBox2,
+                                        children: [(0, Ru.jsx)("img", {
+                                            className: aQ.itemIcon,
+                                            src: xL
+                                        }), (0, Ru.jsxs)("div", {
+                                            className: aQ.itemText,
+                                            children: (0, Ru.jsx)(b_, {
+                                                children: JM(null === (_tmp = i.userProfile) || void 0 === _tmp ? void 0 : _tmp.media)
+                                            })
                                         })]
                                     })
                                 }), (0, Ru.jsx)("div", {

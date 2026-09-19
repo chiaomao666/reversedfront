@@ -1,16 +1,36 @@
-// RF PVP Analyzer - Cloudflare Worker connection settings
-// 請只修改下方 RF_PVP_WRITE_SECRET；不要把寫入密鑰分享到聊天或提交到公開 repository。
-(function configureRfPvpBackend() {
+// RF PVP / RF Ranking Monitor connection settings
+// 本檔案只放在本機 assets/mods/TOOLS/，不要提交到公開 repository。
+(function configureRfBackend() {
   "use strict";
 
-  const WORKER_ORIGIN = "https://rf-pvp-analyzer-api.chengyen1209.workers.dev";
-  const WRITE_SECRET = "reallegend1209"; // <-- 請在此輸入你的寫入密鑰，若不需要寫入功能可留空
+  // 已沿用你舊檔案中的 Worker 網址；請只替換下方兩組密鑰。
+  const PVP_WORKER_ORIGIN = "https://rf-pvp-analyzer-api.chengyen1209.workers.dev";
+  const PVP_API_KEY = "reallegend1209";
 
-  window.RF_PVP_BACKEND_ENDPOINT = `${WORKER_ORIGIN}/api/pvp/capture`;
-  window.RF_PVP_WRITE_SECRET = WRITE_SECRET === "1" ? "" : WRITE_SECRET;
+  const RANKING_WORKER_ORIGIN = "https://rf-ranking-monitor-api.chengyen1209.workers.dev";
+  const RANKING_WRITE_SECRET = "reallegend0";
+
+  const pvpEndpoint = `${PVP_WORKER_ORIGIN.replace(/\/$/, "")}/api/pvp/capture`;
+  const rankingEndpoint = `${RANKING_WORKER_ORIGIN.replace(/\/$/, "")}/api/rankings/capture`;
+  const pvpKey = PVP_API_KEY === "PASTE_NEW_PVP_API_KEY_HERE" ? "" : PVP_API_KEY;
+  const rankingSecret = RANKING_WRITE_SECRET === "PASTE_NEW_RANKING_WRITE_SECRET_HERE" ? "" : RANKING_WRITE_SECRET;
+
+  window.STARTUP_BRIDGE_CONFIG = Object.freeze({
+    endpoint: pvpEndpoint,
+    apiKey: pvpKey,
+    rankingEndpoint,
+    rankingSecret,
+  });
+
+  // 目前守衛使用的相容欄位。
+  window.RF_PVP_BACKEND_ENDPOINT = pvpEndpoint;
+  window.RF_PVP_API_KEY = pvpKey;
+  window.RF_RANKING_ENDPOINT = rankingEndpoint;
+  window.RF_RANKING_WRITE_SECRET = rankingSecret;
 
   console.log(
-    `[RF PVP config] Worker endpoint ready: ${window.RF_PVP_BACKEND_ENDPOINT}; ` +
-    `writeSecret=${window.RF_PVP_WRITE_SECRET ? "configured" : "not configured"}`,
+    `[RF backend config] PVP=${pvpEndpoint}; ranking=${rankingEndpoint}; ` +
+    `pvpKey=${pvpKey ? "configured" : "not configured"}; ` +
+    `rankingSecret=${rankingSecret ? "configured" : "not configured"}`,
   );
 })();
