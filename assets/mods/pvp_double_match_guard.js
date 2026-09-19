@@ -26,6 +26,8 @@
             loaded: true,
             endpoint: readText(supplied.endpoint),
             writeSecret: readText(supplied.writeSecret),
+            rankingEndpoint: readText(supplied.rankingEndpoint),
+            rankingSecret: readText(supplied.rankingSecret),
           };
         }
       } catch (error) {
@@ -47,6 +49,9 @@
   const STARTUP_BRIDGE_CONFIG = takePvpBackendConfig();
   const BRIDGE_ENDPOINT = STARTUP_BRIDGE_CONFIG.endpoint || DEFAULT_BRIDGE_ENDPOINT;
   const CONFIGURED_WRITE_SECRET = STARTUP_BRIDGE_CONFIG.writeSecret;
+  const RANKING_MODES = ["1v1", "3v3", "5v5"];
+  const RANKING_ENDPOINT = STARTUP_BRIDGE_CONFIG.rankingEndpoint || "";
+  const RANKING_SECRET = STARTUP_BRIDGE_CONFIG.rankingSecret || "";
   const BRIDGE_ALLOWED_KEYS = [
     "battleAt", "mode", "outcome", "playerTeam", "opponentTeam", "playerName", "playerUnion", "playerId", "opponentName", "opponentUnion", "opponentPlayerId",
     "rankBefore", "rankAfter", "scoreBefore", "scoreAfter", "notes",
@@ -140,6 +145,19 @@
         if (typeof window.RF_PVP_Debug?.onBridgeStatus === "function") window.RF_PVP_Debug.onBridgeStatus();
       }
     };
+    const sendRankingSnapshot = async (snapshot) => {
+      if (!RANKING_ENDPOINT) throw new Error("ranking endpoint not configured");
+      if (!RANKING_SECRET) throw new Error("ranking write secret not configured");
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), BRIDGE_REQUEST_TIMEOUT_MS);
+      try {
+        const response = await fetch(RANKING_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "X-RF-Ranking-Secret": RANKING_SECRET }, body: JSON.stringify(snapshot), signal: controller.signal });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.ok !== true) throw new Error(result.error || `ranking HTTP ${response.status}`);
+        return result;
+      } finally { window.clearTimeout(timeout); }
+    };
+
     const sendMatch = async (summary) => {
       const endpoint = BRIDGE_ENDPOINT;
       if (!getWriteSecret()) {
@@ -189,7 +207,7 @@
       lastError: bridgeLastError || null,
       writeSecretState: getWriteSecretState(),
     });
-    window.RFLocalBridge = Object.freeze({ sendMatch, probeHealth, getStatus, endpoint: BRIDGE_ENDPOINT });
+    window.RFLocalBridge = Object.freeze({ sendMatch, sendRankingSnapshot, probeHealth, getStatus, endpoint: BRIDGE_ENDPOINT });
     console.log(`[RF bridge] embedded client ready; status=connecting; endpoint=${BRIDGE_ENDPOINT}`);
     void probeHealth();
   }
@@ -360,6 +378,47 @@
     console.warn(`[${MOD_NAME}] 攔截到異常:`, entry);
   }
 
+  function rankingObject(value) { return value && typeof value === "object" && !Array.isArray(value) ? value : null; }
+  function rankingArray(value) {
+    if (Array.isArray(value)) return value;
+    const object = rankingObject(value);
+    if (!object) return null;
+    for (const key of ["entries", "players", "ranking", "rankings", "list", "data"]) if (Array.isArray(object[key])) return object[key];
+    return null;
+  }
+  function extractRankingModes(payload) {
+    const value = unwrapPhoenixResponse(payload);
+    if (!value) return {};
+    const containers = [value, rankingObject(value.rankings), rankingObject(value.leaderboard), rankingObject(value.ranking)].filter(Boolean);
+    const modes = {};
+    for (const mode of RANKING_MODES) for (const container of containers) {
+      const items = rankingArray(container[mode]);
+      if (!items) continue;
+      const entries = items.slice(0, 5000).map((raw, index) => {
+        const entry = rankingObject(raw); if (!entry) return null;
+        const id = firstValue(entry, ["id", "playerId", "player_id", "user_id", "uid"]);
+        const name = firstValue(entry, ["name", "nickname", "playerName", "player_name", "username"]);
+        const organization = firstValue(entry, ["organization", "union", "guild", "unionName", "union_name"]);
+        const rawRank = firstValue(entry, ["rank", "ranking", "position", "orderNo", "no"]);
+        const rawScore = firstValue(entry, ["score", "rating", "points", "point"]);
+        const clean = { id: id == null ? "" : String(id).trim().slice(0, 80), name: name == null ? "" : String(name).trim().slice(0, 120), organization: organization == null ? "" : String(organization).trim().slice(0, 120), rank: Number(rawRank) > 0 ? Number(rawRank) : index + 1, score: Number.isFinite(Number(rawScore)) ? Number(rawScore) : null };
+        return clean.id || clean.name ? clean : null;
+      }).filter(Boolean);
+      if (entries.length) { modes[mode] = entries; break; }
+    }
+    return modes;
+  }
+  function isRankingFrame(payload, topic) { return /^player:\d+$/i.test(String(topic || "")) && Object.keys(extractRankingModes(payload)).length > 0; }
+  const rankingSentFingerprints = new Map();
+  function forwardRankingSnapshot(payload, topic) {
+    const send = window.RFLocalBridge?.sendRankingSnapshot; if (typeof send !== "function") return;
+    const modes = extractRankingModes(payload); if (!Object.keys(modes).length) return;
+    const key = String(topic || "player"), fingerprint = JSON.stringify(modes);
+    if (rankingSentFingerprints.get(key) === fingerprint) return;
+    rankingSentFingerprints.set(key, fingerprint);
+    Promise.resolve(send({ capturedAt: Date.now(), modes })).then((result) => console.log(`[PVP ranking] 已轉送 ${Object.keys(modes).join(", ")} 排行榜快照`, result)).catch((error) => { rankingSentFingerprints.delete(key); console.warn("[PVP ranking] 排行榜快照未送達：", error?.message || error); });
+  }
+
   function isRelevantPvpEvent(event, payload, topic) {
     const name = String(event || "").toLowerCase();
     const channel = String(topic || "").toLowerCase();
@@ -423,6 +482,7 @@
 
   /** 保留實際收到的 PVP 封包；不從畫面或 React state 推測資料。 */
   function capturePvpEvent(event, payload, topic, source = "channel", rawFrame) {
+    if (isRankingFrame(payload, topic)) { forwardRankingSnapshot(payload, topic); return; }
     if (!isRelevantPvpEvent(event, payload, topic)) return;
     observePvpState(event, payload, topic);
     const capturedEvent = {
