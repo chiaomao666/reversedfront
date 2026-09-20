@@ -157,6 +157,20 @@
         return result;
       } finally { window.clearTimeout(timeout); }
     };
+    const sendNationsSnapshot = async (snapshot) => {
+      if (!RANKING_ENDPOINT) throw new Error("ranking endpoint not configured");
+      if (!RANKING_SECRET) throw new Error("ranking write secret not configured");
+      // 跟排行榜快照共用同一台 Worker，只是路徑換成 /nations；同一組密鑰驗證。
+      const endpoint = RANKING_ENDPOINT.replace(/\/capture$/, "/nations");
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), BRIDGE_REQUEST_TIMEOUT_MS);
+      try {
+        const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", "X-RF-Ranking-Secret": RANKING_SECRET }, body: JSON.stringify(snapshot), signal: controller.signal });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.ok !== true) throw new Error(result.error || `nations HTTP ${response.status}`);
+        return result;
+      } finally { window.clearTimeout(timeout); }
+    };
 
     const sendMatch = async (summary) => {
       const endpoint = BRIDGE_ENDPOINT;
@@ -207,7 +221,7 @@
       lastError: bridgeLastError || null,
       writeSecretState: getWriteSecretState(),
     });
-    window.RFLocalBridge = Object.freeze({ sendMatch, sendRankingSnapshot, probeHealth, getStatus, endpoint: BRIDGE_ENDPOINT });
+    window.RFLocalBridge = Object.freeze({ sendMatch, sendRankingSnapshot, sendNationsSnapshot, probeHealth, getStatus, endpoint: BRIDGE_ENDPOINT });
     console.log(`[RF bridge] embedded client ready; status=connecting; endpoint=${BRIDGE_ENDPOINT}`);
     void probeHealth();
   }
@@ -401,7 +415,8 @@
         const organization = firstValue(entry, ["organization", "union", "guild", "unionName", "union_name"]);
         const rawRank = firstValue(entry, ["rank", "ranking", "position", "orderNo", "no"]);
         const rawScore = firstValue(entry, ["score", "rating", "points", "point"]);
-        const clean = { id: id == null ? "" : String(id).trim().slice(0, 80), name: name == null ? "" : String(name).trim().slice(0, 120), organization: organization == null ? "" : String(organization).trim().slice(0, 120), rank: Number(rawRank) > 0 ? Number(rawRank) : index + 1, score: Number.isFinite(Number(rawScore)) ? Number(rawScore) : null };
+        const rawNationId = firstValue(entry, ["nation_id", "nationId"]);
+        const clean = { id: id == null ? "" : String(id).trim().slice(0, 80), name: name == null ? "" : String(name).trim().slice(0, 120), organization: organization == null ? "" : String(organization).trim().slice(0, 120), rank: Number(rawRank) > 0 ? Number(rawRank) : index + 1, score: Number.isFinite(Number(rawScore)) ? Number(rawScore) : null, nationId: Number.isFinite(Number(rawNationId)) ? Number(rawNationId) : null };
         return clean.id || clean.name ? clean : null;
       }).filter(Boolean);
       if (entries.length) { modes[mode] = entries; break; }
@@ -417,6 +432,50 @@
     if (rankingSentFingerprints.get(key) === fingerprint) return;
     rankingSentFingerprints.set(key, fingerprint);
     Promise.resolve(send({ capturedAt: Date.now(), modes })).then((result) => console.log(`[PVP ranking] 已轉送 ${Object.keys(modes).join(", ")} 排行榜快照`, result)).catch((error) => { rankingSentFingerprints.delete(key); console.warn("[PVP ranking] 排行榜快照未送達：", error?.message || error); });
+  }
+
+  /**
+   * 官方 getNations() 對 player:<id> channel push "nations" 的回覆，是一份純陣列，
+   * 每筆至少有 id/name，通常還有 title、flag、color_icon。這份清單全遊戲玩家共用、
+   * 幾乎不會變動，只要抓到一次完整清單就轉送；之後同樣內容不重複送。
+   */
+  function extractNationsList(payload) {
+    const container = asObject(payload) || {};
+    const arr = Array.isArray(payload) ? payload
+      : Array.isArray(container.response) ? container.response
+      : Array.isArray(container.nations) ? container.nations
+      : Array.isArray(container.rawNations) ? container.rawNations
+      : Array.isArray(asObject(container.response)?.nations) ? asObject(container.response).nations
+      : null;
+    if (!arr) return [];
+    const cleaned = arr.map((raw) => {
+      const entry = rankingObject(raw); if (!entry) return null;
+      if (entry.id === undefined || entry.id === null) return null;
+      const name = firstValue(entry, ["name"]);
+      const title = firstValue(entry, ["title"]);
+      if (!name && !title) return null;
+      return {
+        id: Number(entry.id),
+        name: name == null ? "" : String(name).trim().slice(0, 60),
+        title: title == null ? "" : String(title).trim().slice(0, 80),
+        flag: entry.flag == null ? "" : String(entry.flag).trim().slice(0, 200),
+        colorIcon: entry.color_icon == null ? "" : String(entry.color_icon).trim().slice(0, 200),
+      };
+    }).filter(Boolean);
+    // 至少要有兩筆以上才像是完整的陣營清單，避免把不相關的小陣列誤判進來。
+    return cleaned.length >= 2 ? cleaned : [];
+  }
+  function isNationsFrame(payload, topic) {
+    return /^player:\d+$/i.test(String(topic || "")) && extractNationsList(payload).length > 0;
+  }
+  let nationsSentFingerprint = null;
+  function forwardNationsSnapshot(payload) {
+    const send = window.RFLocalBridge?.sendNationsSnapshot; if (typeof send !== "function") return;
+    const nations = extractNationsList(payload); if (!nations.length) return;
+    const fingerprint = JSON.stringify(nations);
+    if (nationsSentFingerprint === fingerprint) return;
+    nationsSentFingerprint = fingerprint;
+    Promise.resolve(send({ capturedAt: Date.now(), nations })).then((result) => console.log(`[PVP ranking] 已轉送 ${nations.length} 筆陣營資料`, result)).catch((error) => { nationsSentFingerprint = null; console.warn("[PVP ranking] 陣營資料未送達：", error?.message || error); });
   }
 
   function isRelevantPvpEvent(event, payload, topic) {
@@ -483,6 +542,7 @@
   /** 保留實際收到的 PVP 封包；不從畫面或 React state 推測資料。 */
   function capturePvpEvent(event, payload, topic, source = "channel", rawFrame) {
     if (isRankingFrame(payload, topic)) { forwardRankingSnapshot(payload, topic); return; }
+    if (isNationsFrame(payload, topic)) { forwardNationsSnapshot(payload); return; }
     if (!isRelevantPvpEvent(event, payload, topic)) return;
     observePvpState(event, payload, topic);
     const capturedEvent = {

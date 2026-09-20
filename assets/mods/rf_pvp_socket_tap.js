@@ -49,11 +49,39 @@
     }
   }
 
+  // 陣營清單（getNations 的官方回覆）是一個純陣列，每筆至少有 id/name/flag 或 title；
+  // 用形狀判斷，不依賴事件名稱，因為觀察到的是原始 Phoenix payload，事件名稱不一定可靠。
+  function looksLikeNationsArray(value) {
+    if (!Array.isArray(value) || value.length < 2) return false;
+    const sample = value.find((item) => item && typeof item === "object" && !Array.isArray(item));
+    return Boolean(sample && "id" in sample && ("flag" in sample || "title" in sample) &&
+      (typeof sample.name === "string" || typeof sample.title === "string"));
+  }
+
   function isPvpFrame(frame) {
     const signature = `${frame.topic} ${frame.event}`.toLowerCase();
-    const isResultPagePlayerFrame = /^player:\d+$/i.test(String(frame.topic || ""))
-      && location.hash.toLowerCase().includes("/pvpresult");
-    return signature.includes("pvp") || isResultPagePlayerFrame;
+    if (signature.includes("pvp")) return true;
+
+    // 不再依賴 location.hash（player:<id> channel 整個 session 都連著，跟畫面在哪無關）；
+    // 改成直接看 payload 本身的形狀是不是官方 medals 回覆或陣營清單。
+    if (/^player:\d+$/i.test(String(frame.topic || ""))) {
+      const payload = frame.payload;
+      if (payload && typeof payload === "object" && !Array.isArray(payload)) {
+        const looksLikeMedals = "medals" in payload || "1v1" in payload || "3v3" in payload || "5v5" in payload;
+        if (looksLikeMedals) return true;
+        // Phoenix reply 格式：排名資料在 payload.response 裡，不在頂層
+        const response = payload.response;
+        if (response && typeof response === "object" && !Array.isArray(response)) {
+          const looksLikeRankingResponse = "1v1" in response || "3v3" in response || "5v5" in response || "medals" in response;
+          if (looksLikeRankingResponse) return true;
+        }
+        if (looksLikeNationsArray(payload.response)) return true;
+        if (looksLikeNationsArray(payload.nations)) return true;
+        if (looksLikeNationsArray(payload.rawNations)) return true;
+      }
+      if (looksLikeNationsArray(payload)) return true;
+    }
+    return false;
   }
 
   function summariseCandidate(frame) {
