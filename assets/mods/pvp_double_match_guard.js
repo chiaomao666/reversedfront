@@ -488,6 +488,7 @@
     // 載入器僅在官方結果頁才轉送 player channel 全部回覆；完整保留以取得版本差異下的 medals 回覆包裝。
     if (/^player:\d+$/i.test(channel) && location.hash.toLowerCase().includes("/pvpresult")) return true;
     if (/^player:\d+$/i.test(channel) && location.hash.toLowerCase().includes("/user/teams/1v1")) return true;
+    if (/^player:\d+$/i.test(channel) && location.hash.toLowerCase().includes("/home")) return true;
     if (["battle_result", "team_confirmed", "surrender"].includes(name)) {
       return isMatching || Boolean(currentBattleChannel);
     }
