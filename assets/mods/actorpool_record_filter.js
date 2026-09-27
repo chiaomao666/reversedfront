@@ -85,6 +85,7 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
         });
 
         let totalPullsSoFar = 0;
+        let tenPullIndex = 1;
         chronoGroups.forEach((group) => {
             let pullIndex = totalPullsSoFar + 1;
             let pullType;
@@ -95,7 +96,15 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
             }
             group.items.forEach((item) => {
                 item.pullType = pullType;
-                item.pullIndexLabel = "第 " + pullIndex + " 抽";
+                if (pullType === "(單抽)") {
+                    item.pullIndexLabel = "第 " + pullIndex + " 抽";
+                } else {
+                    item.pullIndexLabel = "第 " + pullIndex + " ~ " + tenPullIndex + " 抽";
+                    tenPullIndex += 1;
+                    if (tenPullIndex > 10) {
+                        tenPullIndex = 1;
+                    }
+                }
                 item.group_updated_at = group.updated_at;
             });
             totalPullsSoFar += group.items.length;
