@@ -99,3 +99,9 @@
 .custom-search-input::placeholder {
   color: #777 !important;
 }
+
+/* ── 8. 強制移除背景動態 GIF（Actorpoolsrecord_bgLightBox__ 開頭，
+   雜湊後綴每次改版可能不同，用 [class^="..."] 字首比對即可，不用另外寫 JS） ── */
+[class^="Actorpoolsrecord_bgLightBox__"] {
+  display: none !important;
+}

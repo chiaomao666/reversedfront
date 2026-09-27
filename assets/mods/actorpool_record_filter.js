@@ -17,6 +17,10 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
     // Actorpoolsrecord 內容區塊的 class（webpack CSS module 的雜湊後綴每次改版都可能不同，
     // 所以只比對到 "__" 前面這段固定字首，跟 show_level_cap.js 的 CLASS_PREFIX 做法一致）
     const CONTENT_BOX_PREFIX = "Actorpoolsrecord_contentOutBox__";
+    // CSS 裡的 [class^="Actorpoolsrecord_bgLightBox__"] 只是先讓它「看不見」；
+    // 瀏覽器對 inline style 設定的 background-image（尤其是動態 GIF）就算 display:none
+    // 通常還是會持續解碼、播放動畫，白白吃掉效能。這裡直接把整個節點砍掉才會真的停止。
+    const BG_LIGHT_PREFIX = "Actorpoolsrecord_bgLightBox__";
 
     const LIST_WRAPPER_ID = "uw-apr-list-wrapper";
     const SEARCH_CONTAINER_ID = "uw-apr-search-container";
@@ -314,15 +318,27 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
         console.log("[APRFILTER] 已接管抽卡紀錄清單顯示");
     }
 
+    function hasPrefix(el, prefix) {
+        return (
+            el &&
+            el.className &&
+            typeof el.className === "string" &&
+            el.className.split(/\s+/).some((c) => c.indexOf(prefix) === 0)
+        );
+    }
+
+    function removeBgLightGif(el) {
+        if (!hasPrefix(el, BG_LIGHT_PREFIX)) return;
+        el.remove();
+        console.log("[APRFILTER] 已移除背景 GIF 元素（非只是隱藏，避免持續解碼耗效能）");
+    }
+
     function scan(root) {
         if (!root || (root.nodeType !== 1 && root.nodeType !== 9)) return;
         if (!root.querySelectorAll) return;
         root.querySelectorAll("div").forEach((el) => {
-            if (
-                el.className &&
-                typeof el.className === "string" &&
-                el.className.split(/\s+/).some((c) => c.indexOf(CONTENT_BOX_PREFIX) === 0)
-            ) {
+            removeBgLightGif(el);
+            if (hasPrefix(el, CONTENT_BOX_PREFIX)) {
                 attach(el);
             }
         });
@@ -333,6 +349,7 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
             if (m.type !== "childList") continue;
             m.addedNodes.forEach((node) => {
                 if (node.nodeType !== 1) return;
+                removeBgLightGif(node);
                 scan(node);
             });
         }
