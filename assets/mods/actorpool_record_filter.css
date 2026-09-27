@@ -1,0 +1,101 @@
+/* =======================================================
+   💎 抽卡歷程 - 終極控制台與累計抽數說明樣式
+   ======================================================= */
+
+/* ── 1. 品質色彩高亮（金/紫/白） ── */
+.rarity-ssr {
+  color: #ffcc00 !important; /* 金黃色璀璨光芒 */
+  text-shadow: 0 0 6px rgba(255, 204, 0, 0.4) !important;
+}
+
+.rarity-sr {
+  color: #c659ff !important; /* 夢幻史詩紫 */
+  text-shadow: 0 0 6px rgba(198, 89, 255, 0.4) !important;
+}
+
+.rarity-r {
+  color: #ffffff !important; /* 普通白 */
+}
+
+/* ── 2. 「第 N 抽」灰色小標籤 ── */
+.custom-record-index {
+  color: #888888 !important;
+  font-size: 0.95rem !important;
+  font-weight: normal !important;
+  margin-left: 12px !important;
+  font-family: var(--font_text_figures), monospace !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+}
+
+/* ── 3. (單抽)/(十抽) 標籤樣式 ── */
+.custom-record-pulltype {
+  margin-right: 12px !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+  color: #4cc9f0 !important; /* 亮眼淡藍色 */
+}
+
+/* ── 4. 右下角工具箱大面板（包住勾選框和搜尋欄） ── */
+.custom-search-container {
+  position: absolute !important;
+  right: 60px !important;
+  bottom: 25px !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 10px !important; /* 控制勾選框群組與搜尋欄的上下間距 */
+}
+
+/* ── 5. 勾選框的外包裝深色盒子 ── */
+.custom-checkbox-group {
+  display: flex !important;
+  gap: 16px !important; /* 勾選框之間的左右間距 */
+  background: rgba(20, 20, 20, 0.9) !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  border: 1px solid #5d4637 !important; /* 復古銅邊框 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ── 6. 單個勾選框的文字與間距 ── */
+.custom-checkbox-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.95rem !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+.custom-checkbox-label input {
+  cursor: pointer !important;
+  accent-color: #ffcc00 !important; /* 勾選時的勾勾會變金色 */
+}
+
+/* ── 7. 搜尋輸入框樣式 ── */
+.custom-search-input {
+  background: rgba(20, 20, 20, 0.9) !important;
+  border: 2px solid #5d4637 !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  padding: 10px 16px !important;
+  font-size: 1.1rem !important;
+  width: 220px !important;
+  outline: none !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.custom-search-input:focus {
+  border-color: #ffcc00 !important; /* 點擊時發金光 */
+  width: 280px !important; /* 點擊時貼心變寬 */
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.3) !important;
+}
+
+.custom-search-input::placeholder {
+  color: #777 !important;
+}

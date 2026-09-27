@@ -134,7 +134,8 @@
 }
 
 .ant-avatar>img {
-    -o-object-fit: cover
+    -o-object-fit: cover;
+    object-fit: cover
 }
 
 @media screen and (max-width:768px) {
@@ -242,7 +243,8 @@ li:last-child>.ant-breadcrumb-separator {
 
 .ant-btn {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-btn-danger:active>a:only-child,
@@ -567,7 +569,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-card-loading .ant-card-body {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-carousel .slick-dots {
@@ -705,7 +708,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-comment-actions>li>span {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-picker-status-error.ant-picker,
@@ -763,7 +767,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-picker-input>input::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-picker-input>input:-moz-placeholder-shown {
@@ -1255,7 +1260,8 @@ a.ant-btn-disabled>a:only-child:after {
 }
 
 .ant-form-item-label>label .ant-form-item-tooltip {
-    -ms-writing-mode: lr-tb
+    -ms-writing-mode: lr-tb;
+    writing-mode: lr-tb
 }
 
 .ant-form-item-explain-connected {
@@ -1334,7 +1340,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-image-preview-img {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-image-preview-operations-wrapper {
@@ -1411,7 +1418,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-input-number-affix-wrapper::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-input-number-affix-wrapper:-moz-placeholder-shown {
@@ -1557,7 +1565,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-input-number::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-input-number:-moz-placeholder-shown {
@@ -1610,7 +1619,8 @@ a.ant-btn-disabled>a:only-child:after {
     display: inline-flex;
     text-rendering: optimizelegibility;
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-input-number-disabled:hover,
@@ -1621,7 +1631,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-input-number-input {
     -webkit-appearance: textfield !important;
-    -moz-appearance: textfield !important
+    -moz-appearance: textfield !important;
+    appearance: textfield !important
 }
 
 .ant-input-number-input::-moz-placeholder {
@@ -1638,7 +1649,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-input-number-input::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-input-number-input:-moz-placeholder-shown {
@@ -1716,7 +1728,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-input-affix-wrapper::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-input-affix-wrapper:-moz-placeholder-shown {
@@ -1911,7 +1924,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-input::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-input:-moz-placeholder-shown {
@@ -2099,7 +2113,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-mentions::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-mentions:-moz-placeholder-shown {
@@ -2126,7 +2141,8 @@ a.ant-btn-disabled>a:only-child:after {
 .ant-mentions-measure,
 .ant-mentions>textarea {
     -moz-tab-size: inherit;
-    -o-tab-size: inherit
+    -o-tab-size: inherit;
+    tab-size: inherit
 }
 
 .ant-mentions>textarea::-moz-placeholder {
@@ -2143,7 +2159,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-mentions>textarea::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-mentions>textarea:-moz-placeholder-shown {
@@ -2275,7 +2292,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-pagination-item {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-pagination-item:hover {
@@ -2319,7 +2337,8 @@ a.ant-btn-disabled>a:only-child:after {
 .ant-pagination-next button,
 .ant-pagination-prev button {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-pagination-disabled,
@@ -2358,7 +2377,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-pagination-options-quick-jumper input::placeholder {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-pagination-options-quick-jumper input:-moz-placeholder-shown {
@@ -2448,7 +2468,8 @@ a.ant-btn-disabled>a:only-child:after {
 .ant-popover {
     max-width: 100vw;
     -moz-user-select: text;
-    -ms-user-select: text
+    -ms-user-select: text;
+    user-select: text
 }
 
 .ant-popover-content {
@@ -2637,7 +2658,8 @@ a.ant-btn-disabled>a:only-child:after {
 .ant-rate-star-first,
 .ant-rate-star-second {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .segmented-disabled-item,
@@ -2795,7 +2817,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-select-single .ant-select-selector .ant-select-selection-item {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-select-multiple .ant-select-selector:after {
@@ -2804,7 +2827,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-select-multiple .ant-select-selection-item {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-select-multiple .ant-select-selection-item-remove {
@@ -2863,7 +2887,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input {
     -webkit-appearance: none;
-    -moz-appearance: none
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
@@ -3022,7 +3047,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-slider-mark-text {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-slider-step {
@@ -3057,7 +3083,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-spin-blur {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-spin-dot-spin {
@@ -3137,7 +3164,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-switch {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-table.ant-table-middle .ant-table-tbody .ant-table-wrapper:only-child .ant-table {
@@ -3181,7 +3209,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-table-row-expand-icon {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-table-row-expand-icon:focus-visible,
@@ -3583,7 +3612,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-select-tree-indent {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-select-tree-draggable-icon {
@@ -3594,7 +3624,8 @@ a.ant-btn-disabled>a:only-child:after {
 .ant-select-tree-switcher,
 .ant-tree.ant-tree-directory .ant-tree-treenode .ant-tree-node-content-wrapper {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-tree-checkbox-disabled .ant-tree-checkbox-input {
@@ -3625,7 +3656,8 @@ a.ant-btn-disabled>a:only-child:after {
 
 .ant-tree-indent {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-tree-draggable-icon {
@@ -3635,7 +3667,8 @@ a.ant-btn-disabled>a:only-child:after {
 .ant-tree-node-content-wrapper,
 .ant-tree-switcher {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-tree-rtl .ant-tree-checkbox,
@@ -3658,7 +3691,8 @@ a.ant-typography.ant-typography-danger:hover {
 
 .ant-typography.ant-typography-disabled {
     -moz-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none;
+    user-select: none
 }
 
 .ant-typography h1,
@@ -3766,7 +3800,8 @@ a.ant-typography:hover {
 
 .ant-upload-list-picture-card .ant-upload-list-item-thumbnail,
 .ant-upload-list-picture-card .ant-upload-list-item-thumbnail img {
-    -o-object-fit: contain
+    -o-object-fit: contain;
+    object-fit: contain
 }
 
 .ant-upload-list .ant-upload-animate-inline-appear,
@@ -7480,7 +7515,8 @@ input[type=number],
 input[type=password],
 input[type=text],
 textarea {
-    -webkit-appearance: none
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 dl,
@@ -7642,7 +7678,8 @@ select {
 [type=submit],
 button,
 html [type=button] {
-    -webkit-appearance: button
+    -webkit-appearance: button;
+    appearance: button;
 }
 
 [type=button]::-moz-focus-inner,
@@ -7663,7 +7700,8 @@ input[type=date],
 input[type=datetime-local],
 input[type=month],
 input[type=time] {
-    -webkit-appearance: listbox
+    -webkit-appearance: listbox;
+    appearance: listbox
 }
 
 textarea {
@@ -7701,6 +7739,7 @@ progress {
 
 [type=search] {
     -webkit-appearance: none;
+    appearance: none;
     outline-offset: -2px
 }
 
@@ -9508,9 +9547,11 @@ html {
 
 .ant-scroll-number-only,
 .ant-scroll-number-only>p.ant-scroll-number-only-unit {
+    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     height: 20px;
-    -webkit-transform-style: preserve-3d
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
 }
 
 .ant-scroll-number-only>p.ant-scroll-number-only-unit {
@@ -28577,7 +28618,6 @@ textarea.ant-pagination-options-quick-jumper input {
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px 0 #00000014, 0 9px 28px 8px #0000000d;
-    box-shadow: 0 0 8px #00000026\9
 }
 
 @media (-ms-high-contrast:none),
@@ -36491,7 +36531,8 @@ div.ant-typography-edit-content {
 }
 
 .ant-typography-edit-content textarea {
-    -moz-transition: none
+    -moz-transition: none;
+    transition: none
 }
 
 .ant-typography ol,
@@ -36564,6 +36605,7 @@ span.ant-typography-ellipsis-single-line {
 
 .ant-typography-ellipsis-multiple-line {
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     /*! autoprefixer: ignore next */
     -webkit-box-orient: vertical;
     display: -webkit-box;
@@ -45006,6 +45048,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .leaflet-safari .leaflet-tile-container {
     height: 1600px;
     -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
     width: 1600px
 }
 
@@ -45068,7 +45111,8 @@ div.ant-typography-edit-content.ant-typography-rtl {
 }
 
 .leaflet-overlay-pane svg {
-    -moz-user-select: none
+    -moz-user-select: none;
+    user-select: none
 }
 
 .leaflet-pane {
@@ -45549,7 +45593,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 
 .leaflet-oldie .leaflet-popup-content-wrapper {
-    -ms-zoom: 1
+    -ms-zoom: 1;
+    zoom: 1
 }
 
 .leaflet-oldie .leaflet-popup-tip {
@@ -45656,7 +45701,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 @media print {
     .leaflet-control {
-        color-adjust: exact;
+        print-color-adjust: exact;
         -webkit-print-color-adjust: exact
     }
 }
@@ -47199,7 +47244,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .Character_changedBloodNum__ZMZU1:before {
     -webkit-text-stroke: calc(min(57vw, 100vh)*12/1600) #fff;
-    text-stroke: calc(min(57vw, 100vh)*12/1600) #fff;
     content: attr(data-storke);
     position: absolute;
     z-index: -1
@@ -49078,6 +49122,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .Row_multiline_ellipsis_l2__6dblN {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     display: -webkit-box;
     overflow: hidden;
     overflow-wrap: break-word
@@ -50739,6 +50784,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .range-slider input[type=range] {
     -webkit-appearance: none;
+    appearance: none;
     background-color: initial;
     height: 0;
     left: 0;
@@ -52995,7 +53041,8 @@ body {
 }
 
 :where(button, input:is([type=button i], [type=reset i], [type=submit i])) {
-    -webkit-appearance: button
+    -webkit-appearance: button;
+    appearance: button
 }
 
 :where(progress) {
@@ -53012,6 +53059,7 @@ body {
 
 :where(input[type=search i]) {
     -webkit-appearance: textfield;
+    appearance: textfield;
     outline-offset: -2px
 }
 
@@ -53079,7 +53127,6 @@ body {
 }
 
 img {
-    user-drag: none;
     -webkit-user-drag: none
 }
 
@@ -53383,7 +53430,6 @@ b9 {
 }
 
 .Unioninfo_actorBox__CAj1G {
-    display: inline-block;
     float: left;
     height: 100%;
     margin-left: 2%;

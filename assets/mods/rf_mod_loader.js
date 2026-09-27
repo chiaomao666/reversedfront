@@ -46,6 +46,11 @@ console.log("[LOADER] 小工具載入器啟動");
             css: null,
             enabled: true
         },
+        { id: "抽卡紀錄搜尋篩選",
+            src: "./mods/actorpool_record_filter.js",
+            css: "./mods/actorpool_record_filter.css",
+            enabled: true
+        },
         { id: "角色戰力個別顯示",
             src: "./mods/restore_power_display.js",
             css: null,
