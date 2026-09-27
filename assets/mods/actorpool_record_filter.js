@@ -121,7 +121,11 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
 
         let finalCoupons = [];
         displayGroups.forEach((group) => {
-            finalCoupons = finalCoupons.concat(group.items);
+            // 編號（~1 ~ ~10）維持照抽卡當下實際的第一張到第十張，
+            // 但畫面上「新到舊」由上而下的原則要延續到箱子內部：
+            // 同一箱裡最後抽到的（~10）在時間上最新，所以顯示時排在最上面，
+            // 最先抽到的（~1）排在最下面（單抽只有一張，反過來也不影響）。
+            finalCoupons = finalCoupons.concat(group.items.slice().reverse());
         });
 
         return finalCoupons;
