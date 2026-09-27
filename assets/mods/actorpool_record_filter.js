@@ -212,11 +212,48 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
         searchContainer.appendChild(checkboxGroup);
         searchContainer.appendChild(searchInput);
 
+        // 資料量可能高達上萬筆，重新分組 + 排序很花時間；rawCoupons 陣列參照沒變
+        // （代表資料其實沒真的更新，只是隱藏區塊裡發生了不相干的 DOM 變動）就直接
+        // 沿用上次算好的結果，不用整包重跑。
+        let cachedRawCoupons = null;
+        let cachedAllItems = [];
+
+        // 目前顯示筆數（避免資料量大時一次生出上萬個 DOM 節點造成瞬間凍結，
+        // 改成先顯示一部分，其餘用「載入更多」逐步展開）
+        let visibleCount = 300;
+        const PAGE_SIZE = 300;
+
         function render() {
             const fiber = getFiber(nativeContentBox);
             const ctxValue = fiber ? findDCContextValue(fiber) : null;
             const rawCoupons = ctxValue ? ctxValue.used_recruit_coupons : null;
-            const allItems = buildFlattenedCoupons(rawCoupons);
+
+            let allItems;
+            if (rawCoupons === cachedRawCoupons) {
+                allItems = cachedAllItems;
+            } else {
+                allItems = buildFlattenedCoupons(rawCoupons);
+
+                // NEW 的原始語意是「這是該角色史上第一次被抽到的那一筆」（最早、最舊的那次），
+                // 不是「最近一次抽到」。allItems 是新到舊排序，所以要從陣列尾端（最舊）往前掃，
+                // 第一次遇到某個名字的當下（也就是時間上最早那筆）才標記 isNew=true；
+                // 同一個名字之後（其實是時間上更新）的每一筆都是 false。
+                // 依然只掃一次，維持 O(n)，只是方向反過來。
+                let seenNames = new Set();
+                for (let idx = allItems.length - 1; idx >= 0; idx--) {
+                    const item = allItems[idx];
+                    if (seenNames.has(item.name)) {
+                        item.isNew = false;
+                    } else {
+                        item.isNew = true;
+                        seenNames.add(item.name);
+                    }
+                }
+
+                cachedRawCoupons = rawCoupons;
+                cachedAllItems = allItems;
+                visibleCount = PAGE_SIZE; // 資料真的變了（例如抽了新的），重置回第一頁
+            }
 
             const filtered = allItems.filter((item) => {
                 let matchesSearch;
@@ -249,15 +286,9 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
                 return;
             }
 
-            filtered.forEach((item) => {
-                const originalIdx = allItems.indexOf(item);
-                let isNew;
-                if (allItems.slice(originalIdx + 1).some((olderItem) => olderItem.name === item.name)) {
-                    isNew = false;
-                } else {
-                    isNew = true;
-                }
+            const toShow = filtered.slice(0, visibleCount);
 
+            toShow.forEach((item) => {
                 const rarityClass = " rarity-" + String(item.scarcity).toLowerCase();
 
                 const row = document.createElement("div");
@@ -272,7 +303,7 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
                 indexSpan.textContent = item.pullIndexLabel || "";
                 nameSpan.appendChild(indexSpan);
 
-                if (isNew) {
+                if (item.isNew) {
                     const newSpan = document.createElement("span");
                     newSpan.className = "custom-record-new";
                     newSpan.textContent = " (NEW)";
@@ -291,6 +322,20 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
                 row.appendChild(dateSpan);
                 listWrapper.appendChild(row);
             });
+
+            if (filtered.length > visibleCount) {
+                const loadMore = document.createElement("div");
+                loadMore.className = "custom-record-row uw-apr-load-more";
+                loadMore.textContent = `載入更多（還有 ${filtered.length - visibleCount} 筆，目前顯示 ${visibleCount} 筆）`;
+                loadMore.style.cursor = "pointer";
+                loadMore.style.justifyContent = "center";
+                loadMore.style.opacity = "0.7";
+                loadMore.addEventListener("click", () => {
+                    visibleCount += PAGE_SIZE;
+                    render();
+                });
+                listWrapper.appendChild(loadMore);
+            }
         }
 
         render();
@@ -312,8 +357,17 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
 
         // 原生內容區塊雖然被隱藏，React 仍會照常更新它的內容（例如新抽到卡片）；
         // 監聽它的 DOM 變化，當作「資料更新了」的訊號，重新從 Fiber 撈資料、重繪清單。
-        const dataObserver = new MutationObserver(() => render());
-        dataObserver.observe(nativeContentBox, { childList: true, subtree: true, characterData: true });
+        // 資料量大時，若每一次細微 DOM 變動都立刻整包重繪一次會非常吃效能，
+        // 所以這裡加上 debounce，短時間內多次變動只會在安靜下來後重繪「一次」；
+        // 另外拿掉 characterData，只看子節點增減（新抽到的卡片一定是新增節點，
+        // 不會只是改文字），大幅減少不必要的觸發次數。
+        let renderTimer = null;
+        function scheduleRender() {
+            if (renderTimer) clearTimeout(renderTimer);
+            renderTimer = setTimeout(render, 300);
+        }
+        const dataObserver = new MutationObserver(scheduleRender);
+        dataObserver.observe(nativeContentBox, { childList: true, subtree: true });
 
         console.log("[APRFILTER] 已接管抽卡紀錄清單顯示");
     }

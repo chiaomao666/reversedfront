@@ -105,3 +105,24 @@
 [class^="Actorpoolsrecord_bgLightBox__"] {
   display: none !important;
 }
+
+/* ── 9. 全部文字統一比照遊戲字體 ──
+   遊戲全站預設字體其實就是 body { font-family: var(--font_noto_serif) }（Noto Serif TC），
+   數字類（日期、抽數）才特別換成 Gelasio / --font_text_figures（跟原生
+   Actorpoolsrecord_recordDate__MTSeX、Actorpoolsrecord_itemBodyLeft__KsBbZ 用的一致）。
+   <input>/<label> 這類表單元素瀏覽器預設不會繼承頁面字體，所以要另外明確指定，
+   不能只靠繼承。 */
+
+.custom-record-name,
+.custom-record-pulltype,
+.custom-record-new,
+.custom-checkbox-label,
+.custom-search-input {
+  font-family: "Noto Serif TC" !important;
+  font-family: var(--font_noto_serif) !important;
+}
+
+.custom-record-date {
+  font-family: Gelasio !important;
+  font-family: var(--font_text_figures) !important;
+}
