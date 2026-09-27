@@ -14,6 +14,147 @@
 console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板已載入");
 
 (function () {
+    // ---------------------------------------------------------
+    // WebSocket 攔截：在資料源頭把「抽卡歷史紀錄」裁短，餵給遊戲原生元件
+    // ---------------------------------------------------------
+    // 背景：main.js 裡 Actorpoolsrecord 頁面用到的 t.used_recruit_coupons 是靠遊戲的
+    // Phoenix Channels WebSocket 拿的：
+    //   送出：Ao.sendMessage({ topic: Zn, event: "used_recruit_coupons", message: {} })
+    //   收到：case `${Zn},used_recruit_coupons`: status=="ok" && gt(payload)  // gt = setUsed_recruit_coupons
+    // 光是把畫面隱藏(display:none)沒有用——原生的 yI/_I 卡片元件還是照樣會為這上萬筆
+    // 資料的「每一筆」去 mount、去呼叫圖片預載（HM/QM/new Image()），這些都是在 React
+    // 層面發生的事，跟 CSS 看不看得到無關。真正要省效能，必須讓餵給 React 的資料本身
+    // 就只有一小份，而不是餵完整的一萬多筆再藏起來。
+    //
+    // 做法：monkey-patch window.WebSocket。送出的封包如果是 event === "used_recruit_coupons"
+    // 的 push，記住它的 ref；收到對應 ref 的 phx_reply 時，把完整資料先存一份給我們自己的
+    // 搜尋清單用，再把要交還給遊戲本體那份陣列裁短（只留看起來最新的 N 筆），這樣原生
+    // 格線只需要處理少量資料，圖片預載次數就會從上萬次降到幾十次。
+    // Phoenix 封包有新舊兩種格式：
+    //   陣列格式（v2 serializer）：[join_ref, ref, topic, event, payload]
+    //   物件格式（v1 serializer）：{ topic, event, payload, ref }
+    // 兩種都處理；遇到看不懂的格式一律直接放行、不做任何修改，避免弄壞其他正常的
+    // socket 功能（例如 PVP 監控之類其他 mod 也在用同一條連線）。
+    const NATIVE_RENDER_KEEP = 1; // 留給原生（已隱藏）格線的筆數上限
+    const RECRUIT_COUPONS_EVENT = "used_recruit_coupons";
+    const FULL_DATA_GLOBAL_KEY = "__uwFullUsedRecruitCoupons";
+
+    function readFrame(parsed) {
+        if (Array.isArray(parsed) && parsed.length >= 5) {
+            return { format: "array", ref: parsed[1], topic: parsed[2], event: parsed[3], payload: parsed[4] };
+        }
+        if (parsed && typeof parsed === "object" && "event" in parsed && "topic" in parsed) {
+            return { format: "object", ref: parsed.ref, topic: parsed.topic, event: parsed.event, payload: parsed.payload };
+        }
+        return null;
+    }
+
+    function writeFrame(parsed, frame, newPayload) {
+        if (frame.format === "array") {
+            const copy = parsed.slice();
+            copy[4] = newPayload;
+            return copy;
+        }
+        return { ...parsed, payload: newPayload };
+    }
+
+    // 陣列可能是新到舊或舊到新排序，用 updated_at 判斷方向後，抓「看起來最新」的那一端。
+    function keepMostRecent(list, n) {
+        if (!Array.isArray(list) || list.length <= n) return list;
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (first && last && first.updated_at && last.updated_at && first.updated_at < last.updated_at) {
+            return list.slice(-n); // 舊到新排序，最新的在尾端
+        }
+        return list.slice(0, n); // 預設當作新到舊排序
+    }
+
+    (function patchWebSocket() {
+        if (window.__uwAprWsPatched) return; // 避免重複掛（例如腳本被載入兩次）
+        window.__uwAprWsPatched = true;
+
+        const OriginalWebSocket = window.WebSocket;
+        if (typeof OriginalWebSocket !== "function") return;
+
+        function PatchedWebSocket(url, protocols) {
+            const ws = protocols !== undefined ? new OriginalWebSocket(url, protocols) : new OriginalWebSocket(url);
+            const pendingRefs = new Set();
+
+            const originalSend = ws.send.bind(ws);
+            ws.send = function (data) {
+                try {
+                    if (typeof data === "string") {
+                        const parsed = JSON.parse(data);
+                        const frame = readFrame(parsed);
+                        if (frame && frame.event === RECRUIT_COUPONS_EVENT) {
+                            pendingRefs.add(frame.ref);
+                        }
+                    }
+                } catch (e) {
+                    // 不是 JSON 或格式看不懂，忽略，原封不動送出即可
+                }
+                return originalSend(data);
+            };
+
+            ws.addEventListener(
+                "message",
+                function (event) {
+                    if (pendingRefs.size === 0) return;
+                    if (typeof event.data !== "string") return;
+
+                    let parsed;
+                    try {
+                        parsed = JSON.parse(event.data);
+                    } catch (e) {
+                        return;
+                    }
+
+                    const frame = readFrame(parsed);
+                    if (!frame || frame.event !== "phx_reply" || !pendingRefs.has(frame.ref)) return;
+                    pendingRefs.delete(frame.ref);
+
+                    const reply = frame.payload;
+                    if (!reply || reply.status !== "ok" || !Array.isArray(reply.response)) return;
+
+                    // 完整資料先留一份給我們自己的搜尋清單用（不受裁短影響）
+                    window[FULL_DATA_GLOBAL_KEY] = reply.response;
+
+                    if (reply.response.length <= NATIVE_RENDER_KEEP) return; // 資料量不大，不用裁
+
+                    const trimmedResponse = keepMostRecent(reply.response, NATIVE_RENDER_KEEP);
+                    const newParsed = writeFrame(parsed, frame, { ...reply, response: trimmedResponse });
+                    const newData = JSON.stringify(newParsed);
+
+                    console.log(
+                        "[APRFILTER] 已攔截抽卡歷史紀錄，原生元件只會收到 " +
+                            trimmedResponse.length +
+                            " / " +
+                            reply.response.length +
+                            " 筆（完整資料已另外保留給搜尋面板）"
+                    );
+
+                    // 攔下原始事件，改丟一個資料被裁短過的版本給遊戲本體的監聽器
+                    event.stopImmediatePropagation();
+                    ws.dispatchEvent(new MessageEvent("message", { data: newData }));
+                },
+                true // capture 階段：搶在遊戲本體自己的 onmessage 監聽器之前處理
+            );
+
+            return ws;
+        }
+
+        PatchedWebSocket.prototype = OriginalWebSocket.prototype;
+        Object.getOwnPropertyNames(OriginalWebSocket).forEach((key) => {
+            if (key === "prototype" || key === "length" || key === "name") return;
+            try {
+                PatchedWebSocket[key] = OriginalWebSocket[key];
+            } catch (e) {}
+        });
+
+        window.WebSocket = PatchedWebSocket;
+        console.log("[APRFILTER] WebSocket 攔截已掛上，準備裁短抽卡歷史紀錄流量");
+    })();
+
     // Actorpoolsrecord 內容區塊的 class（webpack CSS module 的雜湊後綴每次改版都可能不同，
     // 所以只比對到 "__" 前面這段固定字首，跟 show_level_cap.js 的 CLASS_PREFIX 做法一致）
     const CONTENT_BOX_PREFIX = "Actorpoolsrecord_contentOutBox__";
@@ -233,13 +374,16 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
 
         // 目前顯示筆數（避免資料量大時一次生出上萬個 DOM 節點造成瞬間凍結，
         // 改成先顯示一部分，其餘用「載入更多」逐步展開）
-        let visibleCount = 300;
-        const PAGE_SIZE = 300;
+        let visibleCount = 2000;
+        const PAGE_SIZE = 2000;
 
         function render() {
             const fiber = getFiber(nativeContentBox);
             const ctxValue = fiber ? findDCContextValue(fiber) : null;
-            const rawCoupons = ctxValue ? ctxValue.used_recruit_coupons : null;
+            // 優先用 WebSocket 攔截時保留下來的完整資料；那份沒有被裁短過。
+            // 如果因為某些原因（例如 mod 晚載入、錯過了那次封包）沒攔到，才退回去用
+            // React Context 目前手上那份（此時很可能已經被我們自己裁短過，筆數會比較少）。
+            const rawCoupons = window[FULL_DATA_GLOBAL_KEY] || (ctxValue ? ctxValue.used_recruit_coupons : null);
 
             let allItems;
             if (rawCoupons === cachedRawCoupons) {
