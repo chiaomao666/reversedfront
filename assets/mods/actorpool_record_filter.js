@@ -99,7 +99,7 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
                 if (pullType === "(單抽)") {
                     item.pullIndexLabel = "第 " + pullIndex + " 抽";
                 } else {
-                    item.pullIndexLabel = "第 " + pullIndex + " ~ " + tenPullIndex + " 抽";
+                    item.pullIndexLabel = "第 " + pullIndex + " - " + tenPullIndex + " 抽";
                     tenPullIndex += 1;
                     if (tenPullIndex > 10) {
                         tenPullIndex = 1;
@@ -311,17 +311,17 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
                 nameSpan.className = "custom-record-name" + rarityClass;
                 nameSpan.appendChild(document.createTextNode(item.name || ""));
 
-                const indexSpan = document.createElement("span");
-                indexSpan.className = "custom-record-index";
-                indexSpan.textContent = item.pullIndexLabel || "";
-                nameSpan.appendChild(indexSpan);
-
                 if (item.isNew) {
                     const newSpan = document.createElement("span");
                     newSpan.className = "custom-record-new";
                     newSpan.textContent = " (NEW)";
                     nameSpan.appendChild(newSpan);
                 }
+                
+                const indexSpan = document.createElement("span");
+                indexSpan.className = "custom-record-index";
+                indexSpan.textContent = item.pullIndexLabel || "";
+                nameSpan.appendChild(indexSpan);
 
                 const dateSpan = document.createElement("span");
                 dateSpan.className = "custom-record-date";

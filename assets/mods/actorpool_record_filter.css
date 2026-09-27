@@ -6,15 +6,18 @@
 .rarity-ssr {
   color: #ffcc00 !important; /* 金黃色璀璨光芒 */
   text-shadow: 0 0 6px rgba(255, 204, 0, 0.4) !important;
+  font-weight: bold !important;
 }
 
 .rarity-sr {
   color: #c659ff !important; /* 夢幻史詩紫 */
   text-shadow: 0 0 6px rgba(198, 89, 255, 0.4) !important;
+  font-weight: bold !important;
 }
 
 .rarity-r {
   color: #ffffff !important; /* 普通白 */
+  font-weight: bold !important;
 }
 
 /* ── 2. 「第 N 抽」灰色小標籤 ── */
@@ -22,7 +25,8 @@
   color: #888888 !important;
   font-size: 0.95rem !important;
   font-weight: normal !important;
-  margin-left: 12px !important;
+  position: absolute !important;
+  right: 300px !important;
   font-family: var(--font_text_figures), monospace !important;
   background: rgba(255, 255, 255, 0.08) !important;
   padding: 2px 8px !important;
@@ -84,6 +88,7 @@
   color: #fff !important;
   padding: 10px 16px !important;
   font-size: 1.1rem !important;
+  font-weight: bold !important;
   width: 220px !important;
   outline: none !important;
   transition: all 0.2s ease-in-out !important;
@@ -98,6 +103,7 @@
 
 .custom-search-input::placeholder {
   color: #777 !important;
+  font-weight: bold !important;
 }
 
 /* ── 8. 強制移除背景動態 GIF（Actorpoolsrecord_bgLightBox__ 開頭，
@@ -114,15 +120,30 @@
    不能只靠繼承。 */
 
 .custom-record-name,
-.custom-record-pulltype,
-.custom-record-new,
-.custom-checkbox-label,
-.custom-search-input {
-  font-family: "Noto Serif TC" !important;
-  font-family: var(--font_noto_serif) !important;
-}
-
 .custom-record-date {
   font-family: Gelasio !important;
   font-family: var(--font_text_figures) !important;
+}
+
+.custom-record-pulltype,
+.custom-checkbox-label,
+.custom-search-input {
+  font-family: Noto Sans TC !important;
+  font-family: var(--font_noto_sans) !important;
+}
+
+/* ── 10. (NEW)樣式 ── */
+.custom-record-new {
+  color: #ff4d4d !important; /* 鮮紅色 */
+  font-weight: bold !important;
+  margin-left: 12px !important;
+  font-family: Noto Sans TC !important;
+  font-family: var(--font_noto_sans) !important;
+}
+
+/* ── 11. 時間樣式 ── */
+.custom-record-date {
+  color: #ffffff !important;
+  font-weight: normal !important;
+  margin-right: 56px !important;
 }
