@@ -21,6 +21,11 @@ console.log("[LOADER] 小工具載入器啟動");
             css: null,
             enabled: true
         },
+        { id: "排名戰積分上傳器",
+            src: "./mods/medals_uploader.js",
+            css: null,
+            enabled: true
+        },
         { id: "QM 驗證繞過",
             src: "./mods/qm_bypass.js",
             css: null,
