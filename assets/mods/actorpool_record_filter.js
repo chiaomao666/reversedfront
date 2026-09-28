@@ -35,7 +35,7 @@ console.log("[APRFILTER] 啟動外部副程式：抽卡紀錄搜尋/篩選面板
     //   物件格式（v1 serializer）：{ topic, event, payload, ref }
     // 兩種都處理；遇到看不懂的格式一律直接放行、不做任何修改，避免弄壞其他正常的
     // socket 功能（例如 PVP 監控之類其他 mod 也在用同一條連線）。
-    const NATIVE_RENDER_KEEP = 1; // 留給原生（已隱藏）格線的筆數上限
+    const NATIVE_RENDER_KEEP = 10; // 留給原生（已隱藏）格線的筆數上限
     const RECRUIT_COUPONS_EVENT = "used_recruit_coupons";
     const FULL_DATA_GLOBAL_KEY = "__uwFullUsedRecruitCoupons";
 

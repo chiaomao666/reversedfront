@@ -21,6 +21,21 @@ console.log("[LOADER] 小工具載入器啟動");
             css: null,
             enabled: true
         },
+        { id: "QM 驗證繞過",
+            src: "./mods/qm_bypass.js",
+            css: null,
+            enabled: true
+        },
+        { id: "地圖資源快取",
+            src: "./mods/rf_map_cache.js",
+            css: null,
+            enabled: true
+        },
+        { id: "mapviewer",
+            src: "./MapViewer.js",
+            css: "./MapViewer.css",
+            enabled: true
+        },
         { id: "據點顯示優化",
             src: "./mods/custom_attackmap.js",
             css: "./mods/custom_attackmap.css", 

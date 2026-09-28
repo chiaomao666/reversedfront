@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>純原生圖磚地圖</title>
+    <style>
+        /* 確保 body 沒有預設邊距 */
+        body { margin: 0; padding: 0; overflow: hidden; background: #111; }
+        
+        /* 可視範圍：限制大小並隱藏超出範圍的部分 */
+        #map-viewport {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+        }
+        
+        /* 地圖主體容器：用來裝載所有 img children */
+        #map-container {
+            position: absolute;
+            transform-origin: 0 0;
+            /* 效能優化：強制啟用硬體加速 */
+            will-change: transform; 
+        }
+    </style>
+</head>
+<body>
+    <div id="map-viewport">
+        <!-- JS 會將圖磚塞進這裡 -->
+        <div id="map-container"></div>
+    </div>
+
+    <script type="module" src="./MapViewer.js"></script>
+    <script type="module">
+        import { PureMapViewer } from './MapViewer.js';
+
+        // 初始化地圖
+        // 初始化地圖
+        const map = new PureMapViewer('map-viewport', 'map-container', {
+            tileSize: 256,    // 通常圖磚是 256x256
+            
+            // 注意：你必須根據 z=6 這個層級，填入實際的最大 x 數量與最大 y 數量
+            // 例如你的 x 資料夾從 0 到 45，這裡 cols 就填 46
+            cols: 46,         
+            rows: 35,         
+            
+            // 根據截圖修改：/assets/tiles/{z}/{x}/{y}.png
+            getTileUrl: (x, y) => {
+                const z = 6; // 固定使用第 6 層級的圖磚作為基準底圖
+                return `/assets/tiles/${z}/${x}/${y}.png`; 
+            }
+        });
+    </script>
+</body>
+</html>
