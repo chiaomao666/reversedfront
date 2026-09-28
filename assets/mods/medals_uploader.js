@@ -10,7 +10,7 @@ console.log("[MEDALS] 啟動外部副程式：積分／排行榜上傳器已載�
 
     // ========== 設定區 ==========
     const WORKER_URL   = "https://rf-ranking-monitor-api.chengyen1209.workers.dev";
-    const WRITE_SECRET = "填入新密鑰"; // 跟 Worker 的 RANKING_WRITE_SECRET 一樣
+    const WRITE_SECRET = "reallegend0"; // 跟 Worker 的 RANKING_WRITE_SECRET 一樣
     // ============================
 
     // ---- 積分（medals）節流 ----
