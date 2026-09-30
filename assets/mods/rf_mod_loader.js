@@ -3,6 +3,17 @@
 console.log("[LOADER] 小工具載入器啟動");
 
 (function(){
+    // 共用核心：所有工具共用面板、React store 存取與 DOM 變動排程器。
+    // 保持既有小工具清單與 localStorage 開關；核心一律先載入。
+    const SHOW_PANELS = true;
+    window.UW_SHOW_PANELS = SHOW_PANELS;
+
+    const CORE = [
+        { id: "uw_panel", src: "./mods/uw_panel.js", css: "./mods/uw_panel.css" },
+        { id: "rf_store", src: "./mods/rf_store.js", css: null },
+        { id: "uw_sched", src: "./mods/uw_sched.js", css: null }
+    ];
+
     // ---- 在這裡集中管理所有小工具 ----
     const TOOLS = [
         // 固定位置：assets/mods/rf_pvp_backend_config.js；必須最先載入，讓守衛初始化前取得 Worker 設定。
@@ -74,6 +85,11 @@ console.log("[LOADER] 小工具載入器啟動");
         { id: "角色戰力個別顯示",
             src: "./mods/restore_power_display.js",
             css: null,
+            enabled: true
+        },
+        { id: "編隊符文顯示",
+            src: "./mods/formation_rune_display.js",
+            css: "./mods/formation_rune_display.css",
             enabled: true
         },
         { id: "排名戰顯示對手名稱",
@@ -248,6 +264,10 @@ console.log("[LOADER] 小工具載入器啟動");
 
     async function loadEnabledTools(){
         const cfg = loadConfig();
+        for (const core of CORE) {
+            if (core.css) injectStyle(core);
+            if (core.src) await injectScript(core);
+        }
         for (const tool of TOOLS) {
             if (!isEnabled(tool, cfg)) continue;
             if (tool.css) injectStyle(tool);
@@ -256,61 +276,33 @@ console.log("[LOADER] 小工具載入器啟動");
     }
 
     function buildPanel(){
+        if (!window.UWPanel) {
+            console.warn("[LOADER] 共用面板尚未載入，略過小工具管理器");
+            return;
+        }
+
         const cfg = loadConfig();
-        const style = document.createElement("style");
-        style.textContent = `
-            #uw-loader-panel{
-                position:fixed; left:14px; bottom:14px; z-index:2147483647;
-                width:220px; font-family:ui-monospace,Menlo,Consolas,monospace;
-                background:#14160f; color:#e8e4d5; border:1px solid #3a3f2c;
-                border-radius:4px; box-shadow:0 4px 18px rgba(0,0,0,.5);
-                font-size:12px; overflow:hidden;
-            }
-            #uw-loader-panel .uw-head{
-                background:#1c2018; padding:8px 10px; display:flex;
-                align-items:center; justify-content:space-between; cursor:move;
-                border-bottom:1px solid #3a3f2c;
-            }
-            #uw-loader-panel .uw-head b{color:#d9a441; font-weight:600; font-size:11.5px;}
-            #uw-loader-panel .uw-body{padding:8px 10px; max-height:260px; overflow:auto;}
-            #uw-loader-panel .uw-row{
-                display:flex; align-items:center; gap:8px; padding:4px 0;
-                border-bottom:1px solid #23271a;
-            }
-            #uw-loader-panel .uw-row:last-child{border-bottom:none;}
-            #uw-loader-panel .uw-row span{flex:1; word-break:break-all;}
-            #uw-loader-panel .uw-hint{color:#8b9284; font-size:10.5px; padding:6px 10px; border-top:1px solid #3a3f2c;}
-            #uw-loader-panel .uw-actions{display:flex; gap:7px;}
-            #uw-loader-panel .uw-btn{cursor:pointer; color:#8b9284; font-size:13px; user-select:none;}
-        `;
-        document.head.appendChild(style);
+        const panel = window.UWPanel.create({
+            id: "uw_loader",
+            title: "[小工具管理器]",
+            tabTitle: "小工具",
+            side: "left",
+            width: "220px",
+            hint: "改動後重新整理頁面才會生效",
+            defaultState: "expanded"
+        });
+        if (!panel) return;
 
-        const panel = document.createElement("div");
-        panel.id = "uw-loader-panel";
-        panel.innerHTML = `
-            <div class="uw-head" id="uw-loader-drag">
-                <b>[小工具管理器]</b>
-                <span class="uw-actions">
-                    <span class="uw-btn" id="uw-loader-close">×</span>
-                    <span class="uw-btn" id="uw-loader-min">—</span>
-                </span>
-            </div>
-            <div class="uw-body" id="uw-loader-body"></div>
-            <div class="uw-hint">改動後重新整理頁面才會生效</div>
-        `;
-        document.body.appendChild(panel);
-
-        const body = panel.querySelector("#uw-loader-body");
         TOOLS.forEach(tool => {
             const row = document.createElement("label");
-            row.className = "uw-row";
+            row.className = "uw-panel-row";
             const checked = isEnabled(tool, cfg);
             const cssTag = tool.css ? ' <span style="opacity:.5;font-size:10px;">[css]</span>' : "";
             row.innerHTML = `<input type="checkbox" ${checked ? "checked" : ""} data-id="${tool.id}"><span>${tool.id}${cssTag}</span>`;
-            body.appendChild(row);
+            panel.body.appendChild(row);
         });
 
-        body.addEventListener("change", function(e){
+        panel.body.addEventListener("change", function(e){
             if (e.target.matches("input[type=checkbox]")) {
                 const id = e.target.dataset.id;
                 const newCfg = loadConfig();
@@ -321,44 +313,13 @@ console.log("[LOADER] 小工具載入器啟動");
                 }
             }
         });
-
-        const minBtn = panel.querySelector("#uw-loader-min");
-        let collapsed = false;
-        minBtn.addEventListener("click", function(){
-            collapsed = !collapsed;
-            body.style.display = collapsed ? "none" : "block";
-            panel.querySelector(".uw-hint").style.display = collapsed ? "none" : "block";
-            minBtn.textContent = collapsed ? "+" : "—";
-        });
-
-        const closeBtn = panel.querySelector("#uw-loader-close");
-        closeBtn.addEventListener("click", function(){
-            panel.style.display = "none";
-        });
-
-        const dragHandle = panel.querySelector("#uw-loader-drag");
-        let dragging = false, offX = 0, offY = 0;
-        dragHandle.addEventListener("mousedown", function(e){
-            if (e.target.classList.contains("uw-btn")) return;
-            dragging = true;
-            const rect = panel.getBoundingClientRect();
-            offX = e.clientX - rect.left;
-            offY = e.clientY - rect.top;
-        });
-        document.addEventListener("mousemove", function(e){
-            if (!dragging) return;
-            panel.style.left = (e.clientX - offX) + "px";
-            panel.style.top = (e.clientY - offY) + "px";
-            panel.style.bottom = "auto";
-            panel.style.right = "auto";
-        });
-        document.addEventListener("mouseup", function(){ dragging = false; });
     }
 
-    void loadEnabledTools();
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", buildPanel);
-    } else {
-        buildPanel();
-    }
+    void loadEnabledTools().then(function(){
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", buildPanel);
+        } else {
+            buildPanel();
+        }
+    });
 })();

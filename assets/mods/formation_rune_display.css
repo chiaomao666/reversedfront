@@ -1,0 +1,51 @@
+/* 編隊角色符文（武器）標籤：純視覺疊層，不攔截卡片點擊。 */
+.uw-formation-rune {
+    background: rgba(12, 16, 25, .82);
+    border: 1px solid rgba(213, 172, 83, .9);
+    border-radius: 4px;
+    /* 對齊角色卡右下資訊 i 圖示所在的水平帶。 */
+    bottom: 14%;
+    box-sizing: border-box;
+    color: #fff0bd;
+    display: flex;
+    font-family: var(--font_text, ui-monospace, monospace);
+    font-size: clamp(9px, .8vw, 13px);
+    font-weight: 700;
+    /* 從角色框左緣開始，不再置中。 */
+    left: 0;
+    line-height: 1.25;
+    max-width: 72%;
+    overflow: hidden;
+    padding: 2px 5px;
+    pointer-events: none;
+    position: absolute;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 2px #000;
+    transform: none;
+    white-space: nowrap;
+    z-index: 20;
+}
+
+.uw-formation-rune-icon {
+    display: block;
+    height: clamp(46px, 3.6vw, 64px);
+    margin: 0 0 3px;
+    object-fit: contain;
+    width: clamp(46px, 3.6vw, 64px);
+}
+
+.uw-formation-rune-name {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 選角頁的角色名稱較高；把符文整組上移，避免蓋住名稱。 */
+.uw-formation-rune--picker {
+    bottom: 26%;
+}
