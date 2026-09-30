@@ -1,22 +1,21 @@
 /**
- * 戰鬥倍率面板 (Battle Speed Panel) - v3.11 地毯式支援版
- * 
- * 修改：
- * 1. 廣域過濾：將關鍵字擴大為 attack, battle, pick，確保涵蓋所有據點、PVP 與準備頁面。
- * 2. 穩定同步：維持 200ms 同步頻率，徹底解決忽快忽慢問題。
- * 3. 寬版質感：320px 寬度，保留「尋找實例...」與 v3 實例級標題。
+ * 戰鬥倍率面板 (Battle Speed Panel) - 現行主程式相容版
+ * 據點戰使用 attackPlaySpeed React state；PVP 則直接調整目前 spritesheet 實例。
  */
 
 (function() {
     "use strict";
-    if (window.RFBattleSpeedPanelV313) return;
-    window.RFBattleSpeedPanelV313 = true;
+    if (window.RFBattleSpeedPanelV4) return;
+    window.RFBattleSpeedPanelV4 = true;
 
     const VALUES = [0.25, 0.5, 1, 2, 4, 8];
     let currentMultiplier = 1;
     const originalFps = new WeakMap();
-    let speedContext = null;
-    let nativeSpeed = null;
+    const SPRITESHEET_SELECTOR = [
+        '.react-responsive-spritesheet',
+        '[class*="Character_spritesheet__"]',
+        '[class*="Character_spritesheet_effect__"]'
+    ].join(',');
 
     function isBattlePage() {
         const h = window.location.hash.toLowerCase();
@@ -97,40 +96,36 @@
                 const context = findContextInValue(props, new Set(), 1);
                 if (context) return context;
             }
+            let hook = fiber.memoizedState;
+            for (let index = 0; hook && index < 40; index += 1, hook = hook.next) {
+                const context = findContextInValue(hook.memoizedState, new Set(), 1);
+                if (context) return context;
+            }
             return walk(fiber.child, depth + 1) || walk(fiber.sibling, depth);
         }
         return walk(f, 0);
     }
 
+    function setStatus(text) {
+        const statusEl = document.getElementById('rf-speed-status');
+        if (statusEl) statusEl.textContent = text;
+    }
+
     function applySpeed(multiplier) {
         currentMultiplier = multiplier;
-        const spritesheets = document.querySelectorAll('.react-responsive-spritesheet');
+        const spritesheets = document.querySelectorAll(SPRITESHEET_SELECTOR);
         const nativeSpeedButton = document.querySelector('[class*="BattleStage_iconSpeed"]');
-        if (!spritesheets.length && !nativeSpeedButton && !speedContext) {
-            const statusEl = document.getElementById('rf-speed-status');
-            if (statusEl) statusEl.textContent = "尋找戰鬥實例...";
+        if (!spritesheets.length && !nativeSpeedButton) {
+            setStatus("尚未進入可調速的戰鬥畫面");
             return;
         }
 
-        if (nativeSpeedButton && (multiplier === 1 || multiplier === 2)) {
-            if (nativeSpeed === null) nativeSpeed = multiplier === 1 ? 1 : 2;
-            if (nativeSpeed !== multiplier) {
-                nativeSpeedButton.click();
-                nativeSpeed = multiplier;
-            }
-            const statusEl = document.getElementById('rf-speed-status');
-            if (statusEl) statusEl.textContent = `原生速度按鈕已套用 ${multiplier}x`;
-            return;
-        }
-
-        if (!speedContext) {
-            const anchor = spritesheets[0] || nativeSpeedButton;
-            if (anchor) speedContext = findSpeedContext(anchor);
-        }
+        // 現行據點戰保留原生 1x/2x 按鈕，但其 state setter 可接受其他倍率。
+        // 不再模擬點擊，避免原本速度未知時切到錯誤倍率。
+        const speedContext = nativeSpeedButton ? findSpeedContext(nativeSpeedButton) : null;
         if (speedContext && typeof speedContext.setAttackPlaySpeed === 'function') {
             if (speedContext.attackPlaySpeed !== multiplier) speedContext.setAttackPlaySpeed(multiplier);
-            const statusEl = document.getElementById('rf-speed-status');
-            if (statusEl) statusEl.textContent = `${spritesheets.length} 張已套用 ${multiplier}x`;
+            setStatus(`據點戰速度已設為 ${multiplier}x`);
             return;
         }
 
@@ -140,16 +135,12 @@
             const sn = findInstance(el);
             if (!sn || instances.has(sn)) return;
             instances.add(sn);
-            const info = sn.getInfo();
-            const fps = info && Number(info.fps);
+            const fps = Number(sn.getInfo('fps'));
             if (!originalFps.has(sn)) originalFps.set(sn, Number.isFinite(fps) && fps > 0 ? fps : 24);
             try { sn.setFps(Math.max(1, Math.round(originalFps.get(sn) * multiplier))); count++; } catch(e) {}
         });
-        const statusEl = document.getElementById('rf-speed-status');
-        if (statusEl) statusEl.textContent = count > 0 ? `${count} 張已套用 ${multiplier}x` : "尋找實例...";
+        setStatus(count > 0 ? `PVP 動畫 ${count} 組已套用 ${multiplier}x` : "找不到可調整的動畫實例");
     }
-
-    setInterval(() => applySpeed(currentMultiplier), 200);
 
     function buildUI() {
         const ID = "rf-battle-speed-panel";
@@ -220,4 +211,22 @@
     }
 
     buildUI();
+
+    // PVP 每次進入新回合都會換一批 spritesheet；保留使用者選擇的倍率並套到新實例。
+    let applyQueued = false;
+    const battleObserver = new MutationObserver(mutations => {
+        if (currentMultiplier === 1 || applyQueued) return;
+        const hasBattleNode = mutations.some(m => Array.from(m.addedNodes).some(node => {
+            if (node.nodeType !== 1) return false;
+            return node.matches?.(SPRITESHEET_SELECTOR) || node.querySelector?.(SPRITESHEET_SELECTOR) ||
+                String(node.className || '').includes('BattleStage_');
+        }));
+        if (!hasBattleNode) return;
+        applyQueued = true;
+        setTimeout(() => {
+            applyQueued = false;
+            applySpeed(currentMultiplier);
+        }, 80);
+    });
+    if (document.body) battleObserver.observe(document.body, { childList: true, subtree: true });
 })();
