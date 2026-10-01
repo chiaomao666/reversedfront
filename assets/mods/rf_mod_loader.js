@@ -140,7 +140,7 @@ console.log("[LOADER] 小工具載入器啟動");
         { id: "據點戰數據監測",
             src: "./mods/battle_stats_monitor.js",
             css: null,
-            enabled: false
+            enabled: true
         },
         { id: "首頁齒輪效能優化",
             src: "./mods/home_gear_blocker.js",
